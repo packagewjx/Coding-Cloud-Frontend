@@ -4,6 +4,30 @@ RESTAPI有一些东西需要了解的，[去看看](https://www.zhihu.com/questi
 
 下面说的api，不一定定型，可能会修改。
 
+## 返回内容格式
+
+返回内容共包含下面三个字段
+
+- resultCode：返回码，代表请求结果的状态，状态码如下表格所示
+- message：返回的简短消息
+- data：实际数据
+
+下面的API说明不再提及resultCode和message。
+
+## 登陆API
+
+使用下面所有API之前，**首先得登陆服务器**，取得令牌（Token），然后在后续的请求中，在请求头部，加入Token，值为取得的值。
+
+系统内目前只有一个用户，system:admin，密码为wujunxian。
+
+|API地址|HTTP方法|参数描述|HTTP请求主体|描述|返回值|
+|-|-|-|-|-|-|
+|/token/username={username}&password={password}   |GET   |username：用户名<br>password：密码   |空   |登陆取得登陆令牌   |Token，为登陆令牌   |
+|/token/{token}   |DELETE   |token：令牌值   |空   |登出，并使令牌失效。   |布尔值   |
+|/token/{token}   |GET   |token：令牌值   |空   |手动更新令牌   |布尔值   |
+
+令牌的有效期有10分钟，如果一直没有其他请求，令牌会失效，此时，需要用户重新输入账户密码登陆。
+
 ## 资源管理基础API
 
 下方的接口，资源API都有，前方加上resourceKind，使用时换成具体的资源种类，如`/user/addByName?name=test`。
@@ -11,7 +35,7 @@ RESTAPI有一些东西需要了解的，[去看看](https://www.zhihu.com/questi
 另外，有一个参数为project，指定该操作所在的项目，(加入`&project={projectName}`在后面)，这个参数是可选的，设置好project之后，可以不传递这个参数。下面不再说这个参数。
 
 |API地址|HTTP方法|参数描述|HTTP请求主体|描述|返回值|
-|-|-|-|-|-|
+|-|-|-|-|-|-|
 |/addByName?name={name}|PUT|name：资源的名字|空|添加一项资源，初始内容为空，名字为name|新的user对象，属性为空|
 |/|PUT|无|资源对象完整定义|添加一项资源，资源的各个属性由发送过来的资源对象定义来定义|新的user对象，属性为传送来的对象的属性，另外有一些元数据插入|
 |/{name}|POST|name：资源的名字|资源对象完整定义|修改资源对象，原对象（由name唯一指代）的属性修改成发送来的资源对象定义的属性|更新的user对象，属性为传送来的对象的属性，另外有一些元数据被更新|
