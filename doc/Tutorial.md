@@ -5,6 +5,10 @@
 1. 首先使用`git branch`命令创建一个新的分支，然后切换到该分支，开发你现在的功能。这个功能，可以是一个单独的页面，或者只是某个React模块。但是要保证分支不要包含太多你的修改，要及时合并到主分支，让其他人也看到修改。
 2. 需要合并的时候，**不要使用`git merge`命令**。必须打开github，创建一个新的Pull Request（简称PR，[这里](https://help.github.com/articles/about-pull-requests/)看如何使用Pull Request），经过我的检查和测试过后，如果有问题，我会给出修改的建议，其他人也可以checkout这个分支，查看有没有问题。然后回去修改，提交，没问题了，我会合并到主分支中。
 
+# 后端API参考
+
+查看[这个文档](./API Reference.md)查询。
+
 # 上手react
 
 学习react之前，首先去了解ECMAScript6的[箭头函数](http://es6.ruanyifeng.com/#docs/function#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0)，[类定义语法](http://es6.ruanyifeng.com/#docs/class)，[let赋值语句](http://es6.ruanyifeng.com/#docs/let#let-%E5%91%BD%E4%BB%A4)，[const关键字](http://es6.ruanyifeng.com/#docs/let#const-%E5%91%BD%E4%BB%A4)等等，这些是基础Javascript没有的。
