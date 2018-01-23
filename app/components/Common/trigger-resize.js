@@ -6,7 +6,7 @@
 export default () => {
 
     var element = $('[data-trigger-resize]');
-    var value = element.data('triggerResize')
+    var value = element.data('triggerResize');
 
     element.on('click', function() {
         setTimeout(function() {

@@ -1,3 +1,5 @@
+本篇文档持续更新，随时关注一下commit。
+
 # 本库的使用方法
 
 ## 开发流程
@@ -21,7 +23,12 @@
 
 [谷歌云搭建教程](https://www.youtube.com/watch?v=xrbviAfagrU)。需要提前准备一张信用卡，可以使用[全球付](https://www.globalcash.hk/)。需要事先充值300人民币，但是可以取出来，需要几块钱手续费，这已经比买一年外国VPS要便宜的多，最低大概要5刀每个月。
 
-如果使用linux，推荐安装一个叫做[proxychains](https://github.com/rofl0r/proxychains-ng)的工具，可以让命令的所有网络请求都经过Socks5代理。ShadowsocksR挂代理以后，在本地端口又作Socks5代理，proxychains可以挂这个本地的Socks5代理。这样，也可以不设置国内源，用代理下国外的东西。
+如果使用linux，推荐安装一个叫做[proxychains](https://github.com/rofl0r/proxychains-ng)的工具，可以让命令的所有网络请求都经过Socks5代理。ShadowsocksR挂代理以后，在本地端口又作Socks5代理，proxychains可以挂这个本地的Socks5代理。这样可以不设置国内源，用代理下国外的东西。
+
+# Openshift
+
+- 官方文档的[网址](https://docs.openshift.org/latest/welcome/index.html)。
+- RestAPI的[文档网址](https://docs.openshift.org/latest/rest_api/index.html)：左边目录下有很多文档，主要在`/api/v1`下。
 
 # Angle模板
 
@@ -42,6 +49,15 @@
   - 开发者工具中，打开Source标签，能看到你的代码哪里有错误，带红色波浪线的。
   - 代码执行出错，也会在Source中显示出错的位置。
   - 可以断点调试，跟IDE功能差不多，在Source下面。
+
+## 上手前还需要学习
+
+下面的东西时开发页面时候用到的基本的库，按需使用。**加粗必学。**
+
+- [**react-bootstrap**](https://react-bootstrap.github.io/getting-started/introduction)：Bootstrap样式库，本来用官方的javascript脚本实现，这个库用react重新实现一遍。需提前了解[Bootstrap](https://getbootstrap.com/docs/3.3/getting-started/)库。这是Bootstrap V3，当前版本已经到V4了，不过react-bootstrap用的是V3
+- [**react-transition-group**](https://reactcommunity.org/react-transition-group/)：一些进入和退出的动画组件。
+- [react-router](https://reacttraining.com/react-router/core/guides/quick-start)：如果需要页面内的路由，可以学习使用这个react-router库。
+- [react-router-bootstrap](https://github.com/react-bootstrap/react-router-bootstrap)：整合react-router和react-bootstrap，让router组件有bootstrap的样式。
 
 ## 主目录结构
 
@@ -117,6 +133,69 @@ ditable组件，可以做到原地编辑，也就是看到一些东西，本来�
 |-|-|
 |等待动画（Spinner）|Ball Clip Rotate Mul|
 |数据表格|Datatable   |
+
+# 编程规范
+
+建议先看完[阿里巴巴的Java编码规范](https://github.com/alibaba/p3c/raw/master/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C%EF%BC%88%E7%BA%AA%E5%BF%B5%E7%89%88%EF%BC%89.pdf)，不要觉得为什么这么麻烦，这么多规定，你会发现以后调式维护的时候，会感谢学过这些规范的。里面的内容不必全部看，目前看编程规约和安全规约即可。以后要全部看，终生受益。
+
+前端的编码规范看[这里](http://alloyteam.github.io/CodeGuide/)，这是腾讯的前端编码规范。
+
+软件开发有一点很重要，就是遵循最佳实践，很多前辈已经总结出了打代码的一些经验，如果你们不想重复前人的错误，或者加班加点赶工，就试着先改掉自己的不好的编程习惯。你可以先学习这些，再来打代码。
+
+# Git
+
+重要事情说三遍，**Git不是网盘！Git不是网盘！Git不是网盘！**
+
+Git是一个**版本管理系统**，它的主要功能是管理代码的历史，查看版本的演进，并且可以多人协作完成功能的添加，代码的修改维护等等的管理工作。
+
+用通俗的话来讲，Git有这几个比较容易理解的功能：
+
+- 查看哪些行有增加和删除的，修改的行就是删去旧行，增加了新行
+- 查看版本的更新历史，什么时候、谁更新了什么，修改了什么、添加了什么功能，都能看得到。
+- 分支的管理，Git有一条主（master）分支，代表着这个软件的主要版本的代码，所有的修改，最终都会汇集到主分支上，要么通过在主分支修改并提交（多人协作时不推荐这种做法），要么**通过在主分支的某一个点上，建立一个分支**（推荐做法），根据那个点上的代码内容，进行所需修改，然后，通过合并（merge）功能，把分支合并到主分支，从而将新的更改提交到主分支。
+- 分成远程仓库和本地仓库，提交到（push）远程仓库之后，所有人都能够下载这些更改。
+
+如果不太懂，先看这个[系统的教程](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)。
+
+**很多版本管理软件（Subversion等）其实都差不多，有些思想是通用的**
+
+肯定会有一些问题，我先解答
+
+- **我要合并我的分支到主分支里面了，但是提示代码冲突怎么办？**
+
+这涉及冲突解决的问题。代码冲突也会发生在提交的时候。Git在代码冲突的时候，会提醒你哪个文件发生了冲突，打开那个文件，会看到Git在里面做了一些记号，一部分是主分支当前的内容，一部分是自己的内容，印象中是这样的。
+
+    <<<<< HEAD
+    主分支代码
+    =======
+    你的代码
+    >>>>> 分支的sha256码
+
+这时候，你需要对照两个修改，然后把最终的修改改出来，删去多余的记号，再重新merge或者commit就行了。
+
+- **我在开发另一条分支的代码的时候，主分支也有了几次提交，我的分支的基点落后主分支了，怎么办？**
+
+其实，有两种处理方式
+
+第一是，可以继续开发，合并时候，处理可能会遇到的冲突。
+
+第二，也是**推荐**的做法是，**先rebase，再进行开发**。[rebase](https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%8F%98%E5%9F%BA)就是重新设立基点的意思，这个命令是git最复杂的命令之一。它可以把你的分支的基点（就是主分支和你的分支错开的地方，你新建分支时候的点），移到需要的点那，一般是最新的更改那里。具体看教程。这里不细说。
+
+另外，rebase有一个交互式rebase的选项，可以做更多的东西，包括将多次提交合并到一起，更改提交的顺序（上上次提交和上一次提交的顺序掉转过来）等等的选项。具体看`git rebase -i`的[教程](https://git-scm.com/book/zh/v1/Git-%E5%B7%A5%E5%85%B7-%E9%87%8D%E5%86%99%E5%8E%86%E5%8F%B2)。
+
+- **不小心做了一个可怕的更改，提交了，怎么撤销？**
+
+具体可看git reset和reflog（应对无法reset的更改）的教程。
+
+#### Git最佳实践
+
+- [这里说了一部分](http://blog.csdn.net/happydeer/article/details/17679369)
+- [这里另一部分](http://m.finalshares.com/read-7224)
+- [设置一些alias（命令别称）](https://github.com/GitAlias/gitalias)，效率大增
+
+**当你学完Git的所有功能之后，可以试着在Intellij的Git插件试着使用了，更快更好用。** 但是我要强调，*命令行工具只是提升效率之用，不应该成为入门的选择，用惯命令行，才能够完全理解这个软件是如何使用的。*
+
+多上去github，看下别人成熟的开源项目的代码库，就知道应该怎么用git了。
 
 # 乱七八糟
 

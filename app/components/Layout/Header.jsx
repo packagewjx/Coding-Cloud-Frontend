@@ -34,7 +34,7 @@ class Header extends React.Component {
                 <em className="icon-bell"></em>
                 <span className="label label-danger">11</span>
             </span>
-        )
+        );
         return (
             <header className="topnavbar-wrapper">
                 { /* START Top Navbar */ }

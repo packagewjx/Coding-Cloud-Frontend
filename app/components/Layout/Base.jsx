@@ -22,7 +22,7 @@ class Base extends React.Component {
         //      'rag-fadeInLeftBig'
         //      'rag-zoomBackDown'
 
-        const animationName = 'rag-fadeIn'
+        const animationName = 'rag-fadeIn';
 
         return (
             <div className="wrapper">

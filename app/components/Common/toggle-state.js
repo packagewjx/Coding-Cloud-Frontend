@@ -1,7 +1,7 @@
 // TOGGLE STATE
 // -----------------------------------
 
-const STORAGE_KEY_NAME = 'jq-toggleState'
+const STORAGE_KEY_NAME = 'jq-toggleState';
 
 // Helper object to check for words in a phrase //
 class WordChecker {

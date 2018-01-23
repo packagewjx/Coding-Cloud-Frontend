@@ -42,7 +42,7 @@ $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
 // specify basename below if running in a subdirectory or set as "/" if app runs in root
 const appHistory = useRouterHistory(createHistory)({
   basename: WP_BASE_HREF
-})
+});
 
 ReactDOM.render(
     <Router history={appHistory}>
