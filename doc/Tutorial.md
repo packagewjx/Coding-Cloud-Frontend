@@ -7,6 +7,42 @@
 1. 首先使用`git branch`命令创建一个新的分支，然后切换到该分支，开发你现在的功能。这个功能，可以是一个单独的页面，或者只是某个React模块。但是要保证分支不要包含太多你的修改，要及时合并到主分支，让其他人也看到修改。
 2. 需要合并的时候，**不要使用`git merge`命令**。必须打开github，创建一个新的Pull Request（简称PR，[这里](https://help.github.com/articles/about-pull-requests/)看如何使用Pull Request），经过我的检查和测试过后，如果有问题，我会给出修改的建议，其他人也可以checkout这个分支，查看有没有问题。然后回去修改，提交，没问题了，我会合并到主分支中。
 
+## 文件规范
+
+- 文件头部加入下面的注释
+
+```
+/**
+ Create Date: 1/23/18
+ @author 这里写自己的名字
+ Description: 这里简要说明文件的用途
+ */
+```
+
+- 上面一条最简单的做法是在IDEA里面设置文件模板，进入File-Settings-Editor-File and Code Templates设置菜单。右边的Includes内，修改File Header为上面的内容。右边的Files添加一个`JSX File`，Extension记得写jsx，加入如下内容，然后保存，以后新建jsx文件的时候，会直接设置好初始的内容。
+
+```
+#parse("File Header.java")
+
+import React from 'react';
+
+class ${NAME} extends React.Component {
+    render() {
+        return (
+            /* Insert your Component Here */
+        );
+    }
+}
+
+export default ${NAME};
+```
+
+
+- components文件夹下的文件和文件夹名字都按照模板本来的首字母大写格式，如`Common`、`SingleView`
+- jsx格式的文件存放组件的布局属性以及一些简单的UI逻辑等的定义，组件的一些比较复杂的逻辑应该放在同名的run.js文件中，组件文件调用其中的函数来实现组件的逻辑。假如组件名为`Header`，那么对应的布局文件为`Header.jsx`，组件逻辑文件为`Header.run.js`。
+- 其余参考这个[代码规范](http://alloyteam.github.io/CodeGuide/)
+
+
 # 后端API参考
 
 查看[这个文档](./API Reference.md)查询。
