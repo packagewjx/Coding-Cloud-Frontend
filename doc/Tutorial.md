@@ -92,6 +92,7 @@ export default ${NAME};
 
 - [**react-bootstrap**](https://react-bootstrap.github.io/getting-started/introduction)：Bootstrap样式库，本来用官方的javascript脚本实现，这个库用react重新实现一遍。需提前了解[Bootstrap](https://getbootstrap.com/docs/3.3/getting-started/)库。这是Bootstrap V3，当前版本已经到V4了，不过react-bootstrap用的是V3
 - [**react-transition-group**](https://reactcommunity.org/react-transition-group/)：一些进入和退出的动画组件。
+- [**jQuery**](https://api.jquery.com/)：React专注于[DOM](https://en.wikipedia.org/wiki/Document_Object_Model)的操控，没有获取后台数据的相应API，因此使用jQuery的相关API来做REST客户端，获取数据。
 - [react-router](https://reacttraining.com/react-router/core/guides/quick-start)：如果需要页面内的路由，可以学习使用这个react-router库。
 - [react-router-bootstrap](https://github.com/react-bootstrap/react-router-bootstrap)：整合react-router和react-bootstrap，让router组件有bootstrap的样式。
 
@@ -169,6 +170,12 @@ ditable组件，可以做到原地编辑，也就是看到一些东西，本来�
 |-|-|
 |等待动画（Spinner）|Ball Clip Rotate Mul|
 |数据表格|Datatable   |
+
+## 获取后台数据
+
+我们使用jQuery来获取后台的数据，最基础的函数是`$.ajax()`函数，文档看[这个](https://api.jquery.com/jQuery.ajax/)。最常用的几个参数是url、data、datatype、success、error、complete、method等等。
+
+ajax函数参数很多，于是有一些简写的函数，比如`$.get()`、`$.getJson()`、`$.post()`等等。多来[这里](http://api.jquery.com/category/ajax/)看看这些函数。
 
 # 编程规范
 

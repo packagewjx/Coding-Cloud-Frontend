@@ -1,8 +1,8 @@
 {
-  "name": "Angle",
-  "version": "0.0.0",
-  "description": "Angle - Bootstrap Admin App + ReactJS",
-  "author": "@themicon_co",
+  "name": "SCUT DevCloud Frontend",
+  "version": "0.1.0",
+  "description": "DevCloud web frontend project made for SCUT Innovation Center, used to provide a beautifully-designed and easy-to-use web page for building, deploying and monitering software projects on Openshift Cloud.",
+  "author": "packagewjx@github.com",
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js --inline --progress --port 3000 --open",
     "clean": "rimraf dist/",
