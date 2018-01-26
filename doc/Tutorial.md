@@ -66,6 +66,17 @@ export default ${NAME};
 - 官方文档的[网址](https://docs.openshift.org/latest/welcome/index.html)。
 - RestAPI的[文档网址](https://docs.openshift.org/latest/rest_api/index.html)：左边目录下有很多文档，主要在`/api/v1`下。
 
+## Openshift Web Console登陆流程
+
+Openshift登陆使用了Oauth2.0协议认证，分下面步骤进行：
+
+1. 如果进入首页，会先让我们重定向到`/console`页面
+2. 进入console页面之后，脚本会请求Oauth认证，网址是`/oauth/authorize`，带上Oauth的几个参数。因为没有认证过，会失败，返回302，重定向到`/login`的登录页面。
+3. 请求`/login`页面，参数带上`then`，内容为Oauth请求的重定向地址。
+4. 用户在登录页输入用户名和密码。登陆成功后，拿到了用户的code，带着这个code请求刚才的那个oauth地址，这是自动进行的，因为刚才的请求返回码是302，浏览器会自动重定向。
+5. 然后就可以进入主页了。主页会自动在后台请求token。
+
+
 # Angle模板
 
 ## 下载链接
@@ -98,36 +109,7 @@ export default ${NAME};
 
 ## 主目录结构
 
-    +---app                     #放项目源代码文件
-    |   +---components
-    |   |   +---Blog
-    |   |   +---Charts
-    |   |   +---Common
-    |   |   +---Dashboard
-    |   |   +---Ecommerce
-    |   |   +---Elements
-    |   |   +---Extras
-    |   |   +---Forms
-    |   |   +---Forum
-    |   |   +---Layout
-    |   |   +---Maps
-    |   |   +---Pages
-    |   |   +---Tables
-    |   |   +---Widgets
-    |   |   +---App.jsx
-    |   |   +---index.html
-    |   |   +---Vendor.jsx
-    |   +---fonts
-    |   +---img
-    |   +---server
-    |   |   +---i18n
-    |   +---styles
-    |       +---app
-    |       +---bootstrap
-    |       +---themes
-    +---bower_components
-    +---node_modules
-    +---dist                     #放编译好的文件
+请看[这个文档](File Structure.md)
 
 ## 构建
 
@@ -242,5 +224,5 @@ Git是一个**版本管理系统**，它的主要功能是管理代码的历史�
 
 # 乱七八糟
 
-- IDE推荐用Webstorm，或者Intellij IDEA。IDEA集成了Webstorm的功能。Jetbrains的IDE可以申请[学生免费](https://www.jetbrains.com/student/)，只要有[华南理工大学的邮箱](http://premail.scut.edu.cn/)就行了。
-- Chrome有个工具推荐下，叫做[Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=zh-CN)，可以很方便的执行API请求，保存一些历史的请求等等。需要fanqiang。
+- IDE推荐用Webstorm，或者Intellij IDEA。IDEA集成了Webstorm的功能。Jetbrains的IDE可以[申请学生免费](https://www.jetbrains.com/student/)，只要有[华南理工大学的邮箱](http://premail.scut.edu.cn/)就行了。
+- 有个工具推荐下，叫做[Postman](https://www.getpostman.com/)，可以很方便的执行API请求，保存一些历史的请求等等。不知道获取后台数据的过程如何，可以先用这个来看，看看返回的结果什么的，再想格式化等的东西。
