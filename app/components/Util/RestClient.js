@@ -64,6 +64,10 @@ class Request {
      * data type expected from the server, same function as header "Accept-
      */
     dataType;
+    /**
+     * an object to store header as key/value pair
+     */
+    headers;
 
     constructor() {
         this.server = SERVER.MASTER;
@@ -74,6 +78,7 @@ class Request {
 }
 
 class RestClient {
+    static token;
 
     /**
      * Original http method, provide the customization.
@@ -82,7 +87,14 @@ class RestClient {
     static http(request) {
         //add host address
         request.url = request.server === SERVER.MASTER ? SERVER_ADDRESSES.master : SERVER_ADDRESSES.backend + request.path;
-        console.log(request);
+        if (typeof RestClient.token !== 'undefined') {
+            Object.assign(request.headers,
+                request.server === SERVER.MASTER ?
+                    //if requesting master, use authentication header
+                    {Authentication: "Bearer " + RestClient.token}
+                    //else use token header
+                    : {Token: RestClient.token});
+        }
         $.ajax(request);
     }
 

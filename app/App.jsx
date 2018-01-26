@@ -11,22 +11,17 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, Link, hashHistory, useRouterHistory, IndexRedirect } from 'react-router';
-import { createHistory } from 'history';
+import {IndexRedirect, Route, Router,Link, useRouterHistory} from 'react-router';
+import {createHistory} from 'history';
 
 import initTranslation from './components/Common/localize';
 import initLoadThemes from './components/Common/load-themes';
-
-import Base from './components/Layout/Base';
 import BasePage from './components/Layout/BasePage';
-import BaseHorizontal from './components/Layout/BaseHorizontal';
-
-import SingleView from './components/SingleView/SingleView';
-import SubMenu from './components/SubMenu/SubMenu';
-
+import Login from "./components/Login";
 // Application Styles
 import './styles/bootstrap.scss';
 import './styles/app.scss'
+import HomePage from "./components/HomePage/HomePage";
 
 
 // Init translation system
@@ -35,35 +30,34 @@ initTranslation();
 initLoadThemes();
 
 // Disable warning "Synchronous XMLHttpRequest on the main thread is deprecated.."
-$.ajaxPrefilter(function(options, originalOptions, jqXHR) {
+$.ajaxPrefilter(function (options, originalOptions, jqXHR) {
     options.async = true;
 });
 
 // specify basename below if running in a subdirectory or set as "/" if app runs in root
 const appHistory = useRouterHistory(createHistory)({
-  basename: WP_BASE_HREF
+    basename: WP_BASE_HREF
 });
 
 ReactDOM.render(
     <Router history={appHistory}>
-        <Route path="/" component={Base}>
+        {/*<Route path="/" component={Base}>*/}
 
-            {/* Default route*/}
-            <IndexRedirect to="/singleview" />
+        {/*</Route>*/}
 
-            <Route path="singleview" component={SingleView}/>
-            <Route path="submenu" component={SubMenu}/>
-
+        {/*Pages*/}
+        <Route path="/" component={BasePage}>
+            <IndexRedirect to="login"/>
+            <Route path="login" component={Login}/>
+            <Route path="home" component={HomePage}/>
         </Route>
 
         {/* Not found handler */}
         {/*<Route path="*" component={NotFound}/>*/}
-
     </Router>,
-    document.getElementById('app')
-);
+    document.getElementById('app'));
 
 // Auto close sidebar on route changes
-appHistory.listen(function(ev) {
+appHistory.listen(function (ev) {
     $('body').removeClass('aside-toggled');
 });
