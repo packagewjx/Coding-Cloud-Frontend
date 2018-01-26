@@ -1,35 +1,47 @@
 import React from 'react';
 import {RestClient, SERVER} from "./Util/RestClient";
+import {RESULT_CODE} from "./Common/constants";
+import {Alert} from "react-bootstrap";
 
 class Login extends React.Component {
 
     constructor() {
         super();
-        //TODO check login status, if logged in, goto homepage.
         this.handleLogin = this.handleLogin.bind(this);
         this.loginSuccess = this.loginSuccess.bind(this);
+
+        this.state = {badCredential: false};
+    }
+
+    componentDidMount() {
+        if (typeof RestClient.token !== 'undefined') {
+            this.loginSuccess(RestClient.token);
+        }
     }
 
     handleLogin() {
         let username = $("#inputUsername").val();
         let password = $("#inputPassword").val();
         let success = function (data) {
-            console.log(data);
-            //TODO check data
-            this.loginSuccess(data.data);
+            if (data.resultCode === RESULT_CODE.success && typeof data.data === 'string') {
+                this.setState({badCredential: false, hasError: false});
+                this.loginSuccess(data.data);
+            } else if (data.resultCode === RESULT_CODE['bad-credential']) {
+                this.setState({badCredential: true});
+            }
         };
-        console.log(this);
         success = success.bind(this);
-
-        let error = function (data) {
+        let error = function (data, status) {
             console.log(data);
+            this.setState({hasError: true});
         };
+        error = error.bind(this);
         RestClient.get(SERVER.BACKEND, "/login", {username: username, password: password}, success, error);
     }
 
     loginSuccess(token) {
         this.props.router.replace("home");
-        //TODO store the token
+        RestClient.token = token;
     }
 
     render() {
@@ -38,24 +50,36 @@ class Login extends React.Component {
                 {/* START panel */}
                 <div className="panel panel-dark panel-flat">
                     <div className="panel-heading text-center">
-                        {/*TODO replace logo with our logo*/}
                         <a href="#">
                             <img src="../img/logo.png" alt="Image" className="block-center img-rounded"/>
                         </a>
                     </div>
                     <div className="panel-body">
                         <p className="text-center pv">请登录以继续</p>
-                        <form role="form" data-parsley-validate="" noValidate className="mb-lg">
-                            <div className="form-group has-feedback">
+                        <form className="mb-lg">
+                            <div
+                                className={this.state.badCredential ? "form-group has-feedback has-error" : "form-group has-feedback"}>
                                 <input id="inputUsername" type="text" placeholder="输入用户名" autoComplete="off"
                                        required="required" className="form-control"/>
                                 <span className="fa fa-user form-control-feedback text-muted"></span>
                             </div>
-                            <div className="form-group has-feedback">
+                            <div
+                                className={this.state.badCredential ? "form-group has-feedback has-error" : "form-group has-feedback"}>
                                 <input id="inputPassword" type="password" placeholder="密码" required="required"
                                        className="form-control"/>
                                 <span className="fa fa-lock form-control-feedback text-muted"></span>
                             </div>
+                            {this.state.badCredential ?
+                                <Alert bsStyle="danger">
+                                    用户名或密码错误
+                                </Alert>
+                                : null}
+                            {this.state.hasError ?
+                                <Alert bsStyle="danger">
+                                    出现错误
+                                </Alert>
+                                : null}
+
                             {/*TODO add remember me and reset password*/}
                             {/*<div className="clearfix">*/}
                             {/*<div className="checkbox c-checkbox pull-left mt0">*/}
