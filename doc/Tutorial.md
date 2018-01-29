@@ -161,6 +161,18 @@ ditable组件，可以做到原地编辑，也就是看到一些东西，本来�
 
 我这个这是简单的包装，多来[这里](http://api.jquery.com/category/ajax/)看看ajax函数的详细文档。
 
+## 模拟后台返回数据
+
+我们可以把json数据保存到server文件夹底下，注意命名不要冲突，然后可以请求这个模拟的数据，就像请求后台服务器一样，以查看我们的整个逻辑是否正确。
+
+我现在放了一个templates.json到server目录下，然后我用这条语句来请求，然后就可以检查我的逻辑什么的。
+
+```
+RestClient.get(SERVER.MOCK, "/server/templates.json", undefined, success, error, undefined, this);
+
+
+```
+
 ## 如何开发一个页面
 
 React教程教过我们，开发一个页面，首先开发页面里面的组件。组件可以单独放到一个文件中，也可以放在页面的文件中，这主要看你是否需要重复利用这个组件，推荐放文件中，除了一些细小的组件以外，有利于维护。

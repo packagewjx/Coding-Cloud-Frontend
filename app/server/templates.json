@@ -1,0 +1,640 @@
+{
+  "kind": "PartialObjectMetadataList",
+  "apiVersion": "meta.k8s.io/v1alpha1",
+  "items": [
+    {
+      "kind": "PartialObjectMetadata",
+      "apiVersion": "meta.k8s.io/v1alpha1",
+      "metadata": {
+        "name": "3scale-gateway",
+        "namespace": "openshift",
+        "selfLink": "/apis/template.openshift.io/v1/namespaces/openshift/templates/3scale-gateway",
+        "uid": "50db02e4-e3a1-11e7-bf81-000af7b00488",
+        "resourceVersion": "1011",
+        "creationTimestamp": "2017-12-18T03:12:44Z",
+        "annotations": {
+          "description": "3scale API Gateway",
+          "iconClass": "icon-load-balancer",
+          "tags": "api,gateway,3scale"
+        }
+      }
+    },
+    {
+      "kind": "PartialObjectMetadata",
+      "apiVersion": "meta.k8s.io/v1alpha1",
+      "metadata": {
+        "name": "amp-apicast-wildcard-router",
+        "namespace": "openshift",
+        "selfLink": "/apis/template.openshift.io/v1/namespaces/openshift/templates/amp-apicast-wildcard-router",
+        "uid": "51040c3d-e3a1-11e7-bf81-000af7b00488",
+        "resourceVersion": "1029",
+        "creationTimestamp": "2017-12-18T03:12:44Z"
+      }
+    },
+    {
+      "kind": "PartialObjectMetadata",
+      "apiVersion": "meta.k8s.io/v1alpha1",
+      "metadata": {
+        "name": "amp-pvc",
+        "namespace": "openshift",
+        "selfLink": "/apis/template.openshift.io/v1/namespaces/openshift/templates/amp-pvc",
+        "uid": "50fd9bd7-e3a1-11e7-bf81-000af7b00488",
+        "resourceVersion": "1026",
+        "creationTimestamp": "2017-12-18T03:12:44Z"
+      }
+    },
+    {
+      "kind": "PartialObjectMetadata",
+      "apiVersion": "meta.k8s.io/v1alpha1",
+      "metadata": {
+        "name": "cakephp-mysql-example",
+        "namespace": "openshift",
+        "selfLink": "/apis/template.openshift.io/v1/namespaces/openshift/templates/cakephp-mysql-example",
+        "uid": "50df0752-e3a1-11e7-bf81-000af7b00488",
+        "resourceVersion": "1013",
+        "creationTimestamp": "2017-12-18T03:12:44Z",
+        "annotations": {
+          "description": "An example CakePHP application with a MySQL database. For more information about using this template, including OpenShift considerations, see https://github.com/openshift/cakephp-ex/blob/master/README.md.\n\nWARNING: Any data stored will be lost upon pod destruction. Only use this template for testing.",
+          "iconClass": "icon-php",
+          "openshift.io/display-name": "CakePHP + MySQL (Ephemeral)",
+          "tags": "quickstart,php,cakephp",
+          "template.openshift.io/documentation-url": "https://github.com/openshift/cakephp-ex",
+          "template.openshift.io/long-description": "This template defines resources needed to develop a CakePHP application, including a build configuration, application deployment configuration, and database deployment configuration.  The database is stored in non-persistent storage, so this configuration should be used for experimental purposes only.",
+          "template.openshift.io/provider-display-name": "Red Hat, Inc.",
+          "template.openshift.io/support-url": "https://access.redhat.com"
+        }
+      }
+    },
+    {
+      "kind": "PartialObjectMetadata",
+      "apiVersion": "meta.k8s.io/v1alpha1",
+      "metadata": {
+        "name": "cakephp-mysql-persistent",
+        "namespace": "openshift",
+        "selfLink": "/apis/template.openshift.io/v1/namespaces/openshift/templates/cakephp-mysql-persistent",
+        "uid": "50dcbcb6-e3a1-11e7-bf81-000af7b00488",
+        "resourceVersion": "1012",
+        "creationTimestamp": "2017-12-18T03:12:44Z",
+        "annotations": {
+          "description": "An example CakePHP application with a MySQL database. For more information about using this template, including OpenShift considerations, see https://github.com/openshift/cakephp-ex/blob/master/README.md.",
+          "iconClass": "icon-php",
+          "openshift.io/display-name": "CakePHP + MySQL (Persistent)",
+          "tags": "quickstart,php,cakephp",
+          "template.openshift.io/documentation-url": "https://github.com/openshift/cakephp-ex",
+          "template.openshift.io/long-description": "This template defines resources needed to develop a CakePHP application, including a build configuration, application deployment configuration, and database deployment configuration.",
+          "template.openshift.io/provider-display-name": "Red Hat, Inc.",
+          "template.openshift.io/support-url": "https://access.redhat.com"
+        }
+      }
+    },
+    {
+      "kind": "PartialObjectMetadata",
+      "apiVersion": "meta.k8s.io/v1alpha1",
+      "metadata": {
+        "name": "dancer-mysql-example",
+        "namespace": "openshift",
+        "selfLink": "/apis/template.openshift.io/v1/namespaces/openshift/templates/dancer-mysql-example",
+        "uid": "50e5626d-e3a1-11e7-bf81-000af7b00488",
+        "resourceVersion": "1015",
+        "creationTimestamp": "2017-12-18T03:12:44Z",
+        "annotations": {
+          "description": "An example Dancer application with a MySQL database. For more information about using this template, including OpenShift considerations, see https://github.com/openshift/dancer-ex/blob/master/README.md.\n\nWARNING: Any data stored will be lost upon pod destruction. Only use this template for testing.",
+          "iconClass": "icon-perl",
+          "openshift.io/display-name": "Dancer + MySQL (Ephemeral)",
+          "tags": "quickstart,perl,dancer",
+          "template.openshift.io/documentation-url": "https://github.com/openshift/dancer-ex",
+          "template.openshift.io/long-description": "This template defines resources needed to develop a Dancer based application, including a build configuration, application deployment configuration, and database deployment configuration.  The database is stored in non-persistent storage, so this configuration should be used for experimental purposes only.",
+          "template.openshift.io/provider-display-name": "Red Hat, Inc.",
+          "template.openshift.io/support-url": "https://access.redhat.com"
+        }
+      }
+    },
+    {
+      "kind": "PartialObjectMetadata",
+      "apiVersion": "meta.k8s.io/v1alpha1",
+      "metadata": {
+        "name": "dancer-mysql-persistent",
+        "namespace": "openshift",
+        "selfLink": "/apis/template.openshift.io/v1/namespaces/openshift/templates/dancer-mysql-persistent",
+        "uid": "50e386f2-e3a1-11e7-bf81-000af7b00488",
+        "resourceVersion": "1014",
+        "creationTimestamp": "2017-12-18T03:12:44Z",
+        "annotations": {
+          "description": "An example Dancer application with a MySQL database. For more information about using this template, including OpenShift considerations, see https://github.com/openshift/dancer-ex/blob/master/README.md.",
+          "iconClass": "icon-perl",
+          "openshift.io/display-name": "Dancer + MySQL (Persistent)",
+          "tags": "quickstart,perl,dancer",
+          "template.openshift.io/documentation-url": "https://github.com/openshift/dancer-ex",
+          "template.openshift.io/long-description": "This template defines resources needed to develop a Dancer based application, including a build configuration, application deployment configuration, and database deployment configuration.",
+          "template.openshift.io/provider-display-name": "Red Hat, Inc.",
+          "template.openshift.io/support-url": "https://access.redhat.com"
+        }
+      }
+    },
+    {
+      "kind": "PartialObjectMetadata",
+      "apiVersion": "meta.k8s.io/v1alpha1",
+      "metadata": {
+        "name": "django-psql-example",
+        "namespace": "openshift",
+        "selfLink": "/apis/template.openshift.io/v1/namespaces/openshift/templates/django-psql-example",
+        "uid": "50e95189-e3a1-11e7-bf81-000af7b00488",
+        "resourceVersion": "1017",
+        "creationTimestamp": "2017-12-18T03:12:44Z",
+        "annotations": {
+          "description": "An example Django application with a PostgreSQL database. For more information about using this template, including OpenShift considerations, see https://github.com/openshift/django-ex/blob/master/README.md.\n\nWARNING: Any data stored will be lost upon pod destruction. Only use this template for testing.",
+          "iconClass": "icon-python",
+          "openshift.io/display-name": "Django + PostgreSQL (Ephemeral)",
+          "tags": "quickstart,python,django",
+          "template.openshift.io/documentation-url": "https://github.com/openshift/django-ex",
+          "template.openshift.io/long-description": "This template defines resources needed to develop a Django based application, including a build configuration, application deployment configuration, and database deployment configuration.  The database is stored in non-persistent storage, so this configuration should be used for experimental purposes only.",
+          "template.openshift.io/provider-display-name": "Red Hat, Inc.",
+          "template.openshift.io/support-url": "https://access.redhat.com"
+        }
+      }
+    },
+    {
+      "kind": "PartialObjectMetadata",
+      "apiVersion": "meta.k8s.io/v1alpha1",
+      "metadata": {
+        "name": "django-psql-persistent",
+        "namespace": "openshift",
+        "selfLink": "/apis/template.openshift.io/v1/namespaces/openshift/templates/django-psql-persistent",
+        "uid": "50e77e06-e3a1-11e7-bf81-000af7b00488",
+        "resourceVersion": "1016",
+        "creationTimestamp": "2017-12-18T03:12:44Z",
+        "annotations": {
+          "description": "An example Django application with a PostgreSQL database. For more information about using this template, including OpenShift considerations, see https://github.com/openshift/django-ex/blob/master/README.md.",
+          "iconClass": "icon-python",
+          "openshift.io/display-name": "Django + PostgreSQL (Persistent)",
+          "tags": "quickstart,python,django",
+          "template.openshift.io/documentation-url": "https://github.com/openshift/django-ex",
+          "template.openshift.io/long-description": "This template defines resources needed to develop a Django based application, including a build configuration, application deployment configuration, and database deployment configuration.",
+          "template.openshift.io/provider-display-name": "Red Hat, Inc.",
+          "template.openshift.io/support-url": "https://access.redhat.com"
+        }
+      }
+    },
+    {
+      "kind": "PartialObjectMetadata",
+      "apiVersion": "meta.k8s.io/v1alpha1",
+      "metadata": {
+        "name": "dotnet-example",
+        "namespace": "openshift",
+        "selfLink": "/apis/template.openshift.io/v1/namespaces/openshift/templates/dotnet-example",
+        "uid": "50eb950d-e3a1-11e7-bf81-000af7b00488",
+        "resourceVersion": "1018",
+        "creationTimestamp": "2017-12-18T03:12:44Z",
+        "annotations": {
+          "description": "An example .NET Core application.",
+          "iconClass": "icon-dotnet",
+          "openshift.io/display-name": ".NET Core Example",
+          "tags": "quickstart,dotnet,.net",
+          "template.openshift.io/documentation-url": "https://github.com/redhat-developer/s2i-dotnetcore",
+          "template.openshift.io/provider-display-name": "Red Hat, Inc.",
+          "template.openshift.io/support-url": "https://access.redhat.com"
+        }
+      }
+    },
+    {
+      "kind": "PartialObjectMetadata",
+      "apiVersion": "meta.k8s.io/v1alpha1",
+      "metadata": {
+        "name": "dotnet-pgsql-persistent",
+        "namespace": "openshift",
+        "selfLink": "/apis/template.openshift.io/v1/namespaces/openshift/templates/dotnet-pgsql-persistent",
+        "uid": "50ee1c26-e3a1-11e7-bf81-000af7b00488",
+        "resourceVersion": "1019",
+        "creationTimestamp": "2017-12-18T03:12:44Z",
+        "annotations": {
+          "description": "An example .NET Core application with a PostgreSQL database. For more information about using this template, including OpenShift considerations, see https://github.com/redhat-developer/s2i-dotnetcore.",
+          "iconClass": "icon-dotnet",
+          "openshift.io/display-name": ".NET Core + PostgreSQL (Persistent)",
+          "tags": "quickstart,dotnet",
+          "template.openshift.io/documentation-url": "https://github.com/redhat-developer/s2i-dotnetcore",
+          "template.openshift.io/provider-display-name": "Red Hat, Inc.",
+          "template.openshift.io/support-url": "https://access.redhat.com"
+        }
+      }
+    },
+    {
+      "kind": "PartialObjectMetadata",
+      "apiVersion": "meta.k8s.io/v1alpha1",
+      "metadata": {
+        "name": "dotnet-runtime-example",
+        "namespace": "openshift",
+        "selfLink": "/apis/template.openshift.io/v1/namespaces/openshift/templates/dotnet-runtime-example",
+        "uid": "50f081b9-e3a1-11e7-bf81-000af7b00488",
+        "resourceVersion": "1020",
+        "creationTimestamp": "2017-12-18T03:12:44Z",
+        "annotations": {
+          "description": "An example .NET Core Runtime example application.",
+          "iconClass": "icon-dotnet",
+          "openshift.io/display-name": ".NET Core Runtime Example",
+          "tags": "quickstart,dotnet,.net",
+          "template.openshift.io/documentation-url": "https://github.com/redhat-developer/s2i-dotnetcore",
+          "template.openshift.io/provider-display-name": "Red Hat, Inc.",
+          "template.openshift.io/support-url": "https://access.redhat.com"
+        }
+      }
+    },
+    {
+      "kind": "PartialObjectMetadata",
+      "apiVersion": "meta.k8s.io/v1alpha1",
+      "metadata": {
+        "name": "httpd-example",
+        "namespace": "openshift",
+        "selfLink": "/apis/template.openshift.io/v1/namespaces/openshift/templates/httpd-example",
+        "uid": "50f20a80-e3a1-11e7-bf81-000af7b00488",
+        "resourceVersion": "1021",
+        "creationTimestamp": "2017-12-18T03:12:44Z",
+        "annotations": {
+          "description": "An example Httpd application that serves static content. For more information about using this template, including OpenShift considerations, see https://github.com/openshift/httpd-ex/blob/master/README.md.",
+          "iconClass": "icon-apache",
+          "openshift.io/display-name": "Httpd",
+          "tags": "quickstart,httpd",
+          "template.openshift.io/documentation-url": "https://github.com/openshift/httpd-ex",
+          "template.openshift.io/long-description": "This template defines resources needed to develop a static application served by httpd, including a build configuration and application deployment configuration.",
+          "template.openshift.io/provider-display-name": "Red Hat, Inc.",
+          "template.openshift.io/support-url": "https://access.redhat.com"
+        }
+      }
+    },
+    {
+      "kind": "PartialObjectMetadata",
+      "apiVersion": "meta.k8s.io/v1alpha1",
+      "metadata": {
+        "name": "jenkins-ephemeral",
+        "namespace": "openshift",
+        "selfLink": "/apis/template.openshift.io/v1/namespaces/openshift/templates/jenkins-ephemeral",
+        "uid": "50f63011-e3a1-11e7-bf81-000af7b00488",
+        "resourceVersion": "1022",
+        "creationTimestamp": "2017-12-18T03:12:44Z",
+        "annotations": {
+          "description": "Jenkins service, without persistent storage.\n\nWARNING: Any data stored will be lost upon pod destruction. Only use this template for testing.",
+          "iconClass": "icon-jenkins",
+          "openshift.io/display-name": "Jenkins (Ephemeral)",
+          "tags": "instant-app,jenkins",
+          "template.openshift.io/documentation-url": "https://docs.openshift.org/latest/using_images/other_images/jenkins.html",
+          "template.openshift.io/long-description": "This template deploys a Jenkins server capable of managing OpenShift Pipeline builds and supporting OpenShift-based oauth login.  The Jenkins configuration is stored in non-persistent storage, so this configuration should be used for experimental purposes only.",
+          "template.openshift.io/provider-display-name": "Red Hat, Inc.",
+          "template.openshift.io/support-url": "https://access.redhat.com"
+        }
+      }
+    },
+    {
+      "kind": "PartialObjectMetadata",
+      "apiVersion": "meta.k8s.io/v1alpha1",
+      "metadata": {
+        "name": "jenkins-persistent",
+        "namespace": "openshift",
+        "selfLink": "/apis/template.openshift.io/v1/namespaces/openshift/templates/jenkins-persistent",
+        "uid": "50f7fff8-e3a1-11e7-bf81-000af7b00488",
+        "resourceVersion": "1023",
+        "creationTimestamp": "2017-12-18T03:12:44Z",
+        "annotations": {
+          "description": "Jenkins service, with persistent storage.\n\nNOTE: You must have persistent volumes available in your cluster to use this template.",
+          "iconClass": "icon-jenkins",
+          "openshift.io/display-name": "Jenkins (Persistent)",
+          "tags": "instant-app,jenkins",
+          "template.openshift.io/documentation-url": "https://docs.openshift.org/latest/using_images/other_images/jenkins.html",
+          "template.openshift.io/long-description": "This template deploys a Jenkins server capable of managing OpenShift Pipeline builds and supporting OpenShift-based oauth login.",
+          "template.openshift.io/provider-display-name": "Red Hat, Inc.",
+          "template.openshift.io/support-url": "https://access.redhat.com"
+        }
+      }
+    },
+    {
+      "kind": "PartialObjectMetadata",
+      "apiVersion": "meta.k8s.io/v1alpha1",
+      "metadata": {
+        "name": "mariadb-ephemeral",
+        "namespace": "openshift",
+        "selfLink": "/apis/template.openshift.io/v1/namespaces/openshift/templates/mariadb-ephemeral",
+        "uid": "4de8588c-e3a1-11e7-bf81-000af7b00488",
+        "resourceVersion": "995",
+        "creationTimestamp": "2017-12-18T03:12:39Z",
+        "annotations": {
+          "description": "MariaDB database service, without persistent storage. For more information about using this template, including OpenShift considerations, see https://github.com/sclorg/mariadb-container/blob/master/10.1/README.md.\n\nWARNING: Any data stored will be lost upon pod destruction. Only use this template for testing",
+          "iconClass": "icon-mariadb",
+          "openshift.io/display-name": "MariaDB (Ephemeral)",
+          "tags": "database,mariadb",
+          "template.openshift.io/documentation-url": "https://github.com/sclorg/mariadb-container/blob/master/10.1/README.md",
+          "template.openshift.io/long-description": "This template provides a standalone MariaDB server with a database created.  The database is not stored on persistent storage, so any restart of the service will result in all data being lost.  The database name, username, and password are chosen via parameters when provisioning this service.",
+          "template.openshift.io/provider-display-name": "Red Hat, Inc.",
+          "template.openshift.io/support-url": "https://access.redhat.com"
+        }
+      }
+    },
+    {
+      "kind": "PartialObjectMetadata",
+      "apiVersion": "meta.k8s.io/v1alpha1",
+      "metadata": {
+        "name": "mariadb-persistent",
+        "namespace": "openshift",
+        "selfLink": "/apis/template.openshift.io/v1/namespaces/openshift/templates/mariadb-persistent",
+        "uid": "4decfa8b-e3a1-11e7-bf81-000af7b00488",
+        "resourceVersion": "996",
+        "creationTimestamp": "2017-12-18T03:12:39Z",
+        "annotations": {
+          "description": "MariaDB database service, with persistent storage. For more information about using this template, including OpenShift considerations, see https://github.com/sclorg/mariadb-container/blob/master/10.1/README.md.\n\nNOTE: Scaling to more than one replica is not supported. You must have persistent volumes available in your cluster to use this template.",
+          "iconClass": "icon-mariadb",
+          "openshift.io/display-name": "MariaDB (Persistent)",
+          "tags": "database,mariadb",
+          "template.openshift.io/documentation-url": "https://github.com/sclorg/mariadb-container/blob/master/10.1/README.md",
+          "template.openshift.io/long-description": "This template provides a standalone MariaDB server with a database created.  The database is stored on persistent storage.  The database name, username, and password are chosen via parameters when provisioning this service.",
+          "template.openshift.io/provider-display-name": "Red Hat, Inc.",
+          "template.openshift.io/support-url": "https://access.redhat.com"
+        }
+      }
+    },
+    {
+      "kind": "PartialObjectMetadata",
+      "apiVersion": "meta.k8s.io/v1alpha1",
+      "metadata": {
+        "name": "mongodb-ephemeral",
+        "namespace": "openshift",
+        "selfLink": "/apis/template.openshift.io/v1/namespaces/openshift/templates/mongodb-ephemeral",
+        "uid": "4deed5ae-e3a1-11e7-bf81-000af7b00488",
+        "resourceVersion": "997",
+        "creationTimestamp": "2017-12-18T03:12:39Z",
+        "annotations": {
+          "description": "MongoDB database service, without persistent storage. For more information about using this template, including OpenShift considerations, see https://github.com/sclorg/mongodb-container/blob/master/3.2/README.md.\n\nWARNING: Any data stored will be lost upon pod destruction. Only use this template for testing",
+          "iconClass": "icon-mongodb",
+          "openshift.io/display-name": "MongoDB (Ephemeral)",
+          "tags": "database,mongodb",
+          "template.openshift.io/documentation-url": "https://docs.openshift.org/latest/using_images/db_images/mongodb.html",
+          "template.openshift.io/long-description": "This template provides a standalone MongoDB server with a database created.  The database is not stored on persistent storage, so any restart of the service will result in all data being lost.  The database name, username, and password are chosen via parameters when provisioning this service.",
+          "template.openshift.io/provider-display-name": "Red Hat, Inc.",
+          "template.openshift.io/support-url": "https://access.redhat.com"
+        }
+      }
+    },
+    {
+      "kind": "PartialObjectMetadata",
+      "apiVersion": "meta.k8s.io/v1alpha1",
+      "metadata": {
+        "name": "mongodb-persistent",
+        "namespace": "openshift",
+        "selfLink": "/apis/template.openshift.io/v1/namespaces/openshift/templates/mongodb-persistent",
+        "uid": "4df0a8f2-e3a1-11e7-bf81-000af7b00488",
+        "resourceVersion": "998",
+        "creationTimestamp": "2017-12-18T03:12:39Z",
+        "annotations": {
+          "description": "MongoDB database service, with persistent storage. For more information about using this template, including OpenShift considerations, see https://github.com/sclorg/mongodb-container/blob/master/3.2/README.md.\n\nNOTE: Scaling to more than one replica is not supported. You must have persistent volumes available in your cluster to use this template.",
+          "iconClass": "icon-mongodb",
+          "openshift.io/display-name": "MongoDB (Persistent)",
+          "tags": "database,mongodb",
+          "template.openshift.io/documentation-url": "https://docs.openshift.org/latest/using_images/db_images/mongodb.html",
+          "template.openshift.io/long-description": "This template provides a standalone MongoDB server with a database created.  The database is stored on persistent storage.  The database name, username, and password are chosen via parameters when provisioning this service.",
+          "template.openshift.io/provider-display-name": "Red Hat, Inc.",
+          "template.openshift.io/support-url": "https://access.redhat.com"
+        }
+      }
+    },
+    {
+      "kind": "PartialObjectMetadata",
+      "apiVersion": "meta.k8s.io/v1alpha1",
+      "metadata": {
+        "name": "my-system",
+        "namespace": "openshift",
+        "selfLink": "/apis/template.openshift.io/v1/namespaces/openshift/templates/my-system",
+        "uid": "c00bfdb0-eab8-11e7-9268-000af7b00488",
+        "resourceVersion": "809694",
+        "creationTimestamp": "2017-12-27T03:48:07Z"
+      }
+    },
+    {
+      "kind": "PartialObjectMetadata",
+      "apiVersion": "meta.k8s.io/v1alpha1",
+      "metadata": {
+        "name": "mysql-ephemeral",
+        "namespace": "openshift",
+        "selfLink": "/apis/template.openshift.io/v1/namespaces/openshift/templates/mysql-ephemeral",
+        "uid": "4df345a5-e3a1-11e7-bf81-000af7b00488",
+        "resourceVersion": "999",
+        "creationTimestamp": "2017-12-18T03:12:39Z",
+        "annotations": {
+          "description": "MySQL database service, without persistent storage. For more information about using this template, including OpenShift considerations, see https://github.com/sclorg/mysql-container/blob/master/5.7/README.md.\n\nWARNING: Any data stored will be lost upon pod destruction. Only use this template for testing",
+          "iconClass": "icon-mysql-database",
+          "openshift.io/display-name": "MySQL (Ephemeral)",
+          "tags": "database,mysql",
+          "template.openshift.io/documentation-url": "https://docs.openshift.org/latest/using_images/db_images/mysql.html",
+          "template.openshift.io/long-description": "This template provides a standalone MySQL server with a database created.  The database is not stored on persistent storage, so any restart of the service will result in all data being lost.  The database name, username, and password are chosen via parameters when provisioning this service.",
+          "template.openshift.io/provider-display-name": "Red Hat, Inc.",
+          "template.openshift.io/support-url": "https://access.redhat.com"
+        }
+      }
+    },
+    {
+      "kind": "PartialObjectMetadata",
+      "apiVersion": "meta.k8s.io/v1alpha1",
+      "metadata": {
+        "name": "mysql-persistent",
+        "namespace": "openshift",
+        "selfLink": "/apis/template.openshift.io/v1/namespaces/openshift/templates/mysql-persistent",
+        "uid": "4df528ad-e3a1-11e7-bf81-000af7b00488",
+        "resourceVersion": "1000",
+        "creationTimestamp": "2017-12-18T03:12:39Z",
+        "annotations": {
+          "description": "MySQL database service, with persistent storage. For more information about using this template, including OpenShift considerations, see https://github.com/sclorg/mysql-container/blob/master/5.7/README.md.\n\nNOTE: Scaling to more than one replica is not supported. You must have persistent volumes available in your cluster to use this template.",
+          "iconClass": "icon-mysql-database",
+          "openshift.io/display-name": "MySQL (Persistent)",
+          "tags": "database,mysql",
+          "template.openshift.io/documentation-url": "https://docs.openshift.org/latest/using_images/db_images/mysql.html",
+          "template.openshift.io/long-description": "This template provides a standalone MySQL server with a database created.  The database is stored on persistent storage.  The database name, username, and password are chosen via parameters when provisioning this service.",
+          "template.openshift.io/provider-display-name": "Red Hat, Inc.",
+          "template.openshift.io/support-url": "https://access.redhat.com"
+        }
+      }
+    },
+    {
+      "kind": "PartialObjectMetadata",
+      "apiVersion": "meta.k8s.io/v1alpha1",
+      "metadata": {
+        "name": "nodejs-mongo-persistent",
+        "namespace": "openshift",
+        "selfLink": "/apis/template.openshift.io/v1/namespaces/openshift/templates/nodejs-mongo-persistent",
+        "uid": "50f9e1be-e3a1-11e7-bf81-000af7b00488",
+        "resourceVersion": "1024",
+        "creationTimestamp": "2017-12-18T03:12:44Z",
+        "annotations": {
+          "description": "An example Node.js application with a MongoDB database. For more information about using this template, including OpenShift considerations, see https://github.com/openshift/nodejs-ex/blob/master/README.md.",
+          "iconClass": "icon-nodejs",
+          "openshift.io/display-name": "Node.js + MongoDB (Persistent)",
+          "tags": "quickstart,nodejs",
+          "template.openshift.io/documentation-url": "https://github.com/openshift/nodejs-ex",
+          "template.openshift.io/long-description": "This template defines resources needed to develop a NodeJS application, including a build configuration, application deployment configuration, and database deployment configuration.",
+          "template.openshift.io/provider-display-name": "Red Hat, Inc.",
+          "template.openshift.io/support-url": "https://access.redhat.com"
+        }
+      }
+    },
+    {
+      "kind": "PartialObjectMetadata",
+      "apiVersion": "meta.k8s.io/v1alpha1",
+      "metadata": {
+        "name": "nodejs-mongodb-example",
+        "namespace": "openshift",
+        "selfLink": "/apis/template.openshift.io/v1/namespaces/openshift/templates/nodejs-mongodb-example",
+        "uid": "50fbe455-e3a1-11e7-bf81-000af7b00488",
+        "resourceVersion": "1025",
+        "creationTimestamp": "2017-12-18T03:12:44Z",
+        "annotations": {
+          "description": "An example Node.js application with a MongoDB database. For more information about using this template, including OpenShift considerations, see https://github.com/openshift/nodejs-ex/blob/master/README.md.\n\nWARNING: Any data stored will be lost upon pod destruction. Only use this template for testing.",
+          "iconClass": "icon-nodejs",
+          "openshift.io/display-name": "Node.js + MongoDB (Ephemeral)",
+          "tags": "quickstart,nodejs",
+          "template.openshift.io/documentation-url": "https://github.com/openshift/nodejs-ex",
+          "template.openshift.io/long-description": "This template defines resources needed to develop a NodeJS application, including a build configuration, application deployment configuration, and database deployment configuration.  The database is stored in non-persistent storage, so this configuration should be used for experimental purposes only.",
+          "template.openshift.io/provider-display-name": "Red Hat, Inc.",
+          "template.openshift.io/support-url": "https://access.redhat.com"
+        }
+      }
+    },
+    {
+      "kind": "PartialObjectMetadata",
+      "apiVersion": "meta.k8s.io/v1alpha1",
+      "metadata": {
+        "name": "postgresql-ephemeral",
+        "namespace": "openshift",
+        "selfLink": "/apis/template.openshift.io/v1/namespaces/openshift/templates/postgresql-ephemeral",
+        "uid": "4df6fe4c-e3a1-11e7-bf81-000af7b00488",
+        "resourceVersion": "1001",
+        "creationTimestamp": "2017-12-18T03:12:39Z",
+        "annotations": {
+          "description": "PostgreSQL database service, without persistent storage. For more information about using this template, including OpenShift considerations, see https://github.com/sclorg/postgresql-container/blob/master/9.5.\n\nWARNING: Any data stored will be lost upon pod destruction. Only use this template for testing",
+          "iconClass": "icon-postgresql",
+          "openshift.io/display-name": "PostgreSQL (Ephemeral)",
+          "tags": "database,postgresql",
+          "template.openshift.io/documentation-url": "https://docs.openshift.org/latest/using_images/db_images/postgresql.html",
+          "template.openshift.io/long-description": "This template provides a standalone PostgreSQL server with a database created.  The database is not stored on persistent storage, so any restart of the service will result in all data being lost.  The database name, username, and password are chosen via parameters when provisioning this service.",
+          "template.openshift.io/provider-display-name": "Red Hat, Inc.",
+          "template.openshift.io/support-url": "https://access.redhat.com"
+        }
+      }
+    },
+    {
+      "kind": "PartialObjectMetadata",
+      "apiVersion": "meta.k8s.io/v1alpha1",
+      "metadata": {
+        "name": "postgresql-persistent",
+        "namespace": "openshift",
+        "selfLink": "/apis/template.openshift.io/v1/namespaces/openshift/templates/postgresql-persistent",
+        "uid": "4df892ab-e3a1-11e7-bf81-000af7b00488",
+        "resourceVersion": "1002",
+        "creationTimestamp": "2017-12-18T03:12:39Z",
+        "annotations": {
+          "description": "PostgreSQL database service, with persistent storage. For more information about using this template, including OpenShift considerations, see https://github.com/sclorg/postgresql-container/blob/master/9.5.\n\nNOTE: Scaling to more than one replica is not supported. You must have persistent volumes available in your cluster to use this template.",
+          "iconClass": "icon-postgresql",
+          "openshift.io/display-name": "PostgreSQL (Persistent)",
+          "tags": "database,postgresql",
+          "template.openshift.io/documentation-url": "https://docs.openshift.org/latest/using_images/db_images/postgresql.html",
+          "template.openshift.io/long-description": "This template provides a standalone PostgreSQL server with a database created.  The database is stored on persistent storage.  The database name, username, and password are chosen via parameters when provisioning this service.",
+          "template.openshift.io/provider-display-name": "Red Hat, Inc.",
+          "template.openshift.io/support-url": "https://access.redhat.com"
+        }
+      }
+    },
+    {
+      "kind": "PartialObjectMetadata",
+      "apiVersion": "meta.k8s.io/v1alpha1",
+      "metadata": {
+        "name": "rails-pgsql-persistent",
+        "namespace": "openshift",
+        "selfLink": "/apis/template.openshift.io/v1/namespaces/openshift/templates/rails-pgsql-persistent",
+        "uid": "51000671-e3a1-11e7-bf81-000af7b00488",
+        "resourceVersion": "1027",
+        "creationTimestamp": "2017-12-18T03:12:44Z",
+        "annotations": {
+          "description": "An example Rails application with a PostgreSQL database. For more information about using this template, including OpenShift considerations, see https://github.com/openshift/rails-ex/blob/master/README.md.",
+          "iconClass": "icon-ruby",
+          "openshift.io/display-name": "Rails + PostgreSQL (Persistent)",
+          "tags": "quickstart,ruby,rails",
+          "template.openshift.io/documentation-url": "https://github.com/openshift/rails-ex",
+          "template.openshift.io/long-description": "This template defines resources needed to develop a Rails application, including a build configuration, application deployment configuration, and database deployment configuration.",
+          "template.openshift.io/provider-display-name": "Red Hat, Inc.",
+          "template.openshift.io/support-url": "https://access.redhat.com"
+        }
+      }
+    },
+    {
+      "kind": "PartialObjectMetadata",
+      "apiVersion": "meta.k8s.io/v1alpha1",
+      "metadata": {
+        "name": "rails-postgresql-example",
+        "namespace": "openshift",
+        "selfLink": "/apis/template.openshift.io/v1/namespaces/openshift/templates/rails-postgresql-example",
+        "uid": "51021123-e3a1-11e7-bf81-000af7b00488",
+        "resourceVersion": "1028",
+        "creationTimestamp": "2017-12-18T03:12:44Z",
+        "annotations": {
+          "description": "An example Rails application with a PostgreSQL database. For more information about using this template, including OpenShift considerations, see https://github.com/openshift/rails-ex/blob/master/README.md.\n\nWARNING: Any data stored will be lost upon pod destruction. Only use this template for testing.",
+          "iconClass": "icon-ruby",
+          "openshift.io/display-name": "Rails + PostgreSQL (Ephemeral)",
+          "tags": "quickstart,ruby,rails",
+          "template.openshift.io/documentation-url": "https://github.com/openshift/rails-ex",
+          "template.openshift.io/long-description": "This template defines resources needed to develop a Rails application, including a build configuration, application deployment configuration, and database deployment configuration.  The database is stored in non-persistent storage, so this configuration should be used for experimental purposes only.",
+          "template.openshift.io/provider-display-name": "Red Hat, Inc.",
+          "template.openshift.io/support-url": "https://access.redhat.com"
+        }
+      }
+    },
+    {
+      "kind": "PartialObjectMetadata",
+      "apiVersion": "meta.k8s.io/v1alpha1",
+      "metadata": {
+        "name": "redis-ephemeral",
+        "namespace": "openshift",
+        "selfLink": "/apis/template.openshift.io/v1/namespaces/openshift/templates/redis-ephemeral",
+        "uid": "4dfa6ca6-e3a1-11e7-bf81-000af7b00488",
+        "resourceVersion": "1003",
+        "creationTimestamp": "2017-12-18T03:12:39Z",
+        "annotations": {
+          "description": "Redis in-memory data structure store, without persistent storage. For more information about using this template, including OpenShift considerations, see https://github.com/sclorg/redis-container/blob/master/3.2.\n\nWARNING: Any data stored will be lost upon pod destruction. Only use this template for testing",
+          "iconClass": "icon-redis",
+          "openshift.io/display-name": "Redis (Ephemeral)",
+          "tags": "database,redis",
+          "template.openshift.io/documentation-url": "https://github.com/sclorg/redis-container/tree/master/3.2",
+          "template.openshift.io/long-description": "This template provides a standalone Redis server.  The data is not stored on persistent storage, so any restart of the service will result in all data being lost.",
+          "template.openshift.io/provider-display-name": "Red Hat, Inc.",
+          "template.openshift.io/support-url": "https://access.redhat.com"
+        }
+      }
+    },
+    {
+      "kind": "PartialObjectMetadata",
+      "apiVersion": "meta.k8s.io/v1alpha1",
+      "metadata": {
+        "name": "redis-persistent",
+        "namespace": "openshift",
+        "selfLink": "/apis/template.openshift.io/v1/namespaces/openshift/templates/redis-persistent",
+        "uid": "4dfde05a-e3a1-11e7-bf81-000af7b00488",
+        "resourceVersion": "1004",
+        "creationTimestamp": "2017-12-18T03:12:39Z",
+        "annotations": {
+          "description": "Redis in-memory data structure store, with persistent storage. For more information about using this template, including OpenShift considerations, see https://github.com/sclorg/redis-container/blob/master/3.2.\n\nNOTE: You must have persistent volumes available in your cluster to use this template.",
+          "iconClass": "icon-redis",
+          "openshift.io/display-name": "Redis (Persistent)",
+          "tags": "database,redis",
+          "template.openshift.io/documentation-url": "https://github.com/sclorg/redis-container/tree/master/3.2",
+          "template.openshift.io/long-description": "This template provides a standalone Redis server.  The data is stored on persistent storage.",
+          "template.openshift.io/provider-display-name": "Red Hat, Inc.",
+          "template.openshift.io/support-url": "https://access.redhat.com"
+        }
+      }
+    },
+    {
+      "kind": "PartialObjectMetadata",
+      "apiVersion": "meta.k8s.io/v1alpha1",
+      "metadata": {
+        "name": "system",
+        "namespace": "openshift",
+        "selfLink": "/apis/template.openshift.io/v1/namespaces/openshift/templates/system",
+        "uid": "50d6f31b-e3a1-11e7-bf81-000af7b00488",
+        "resourceVersion": "1010",
+        "creationTimestamp": "2017-12-18T03:12:44Z"
+      }
+    }
+  ]
+}

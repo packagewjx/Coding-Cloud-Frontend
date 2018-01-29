@@ -29,7 +29,8 @@ export const APP_MEDIAQUERY = {
 
 export const SERVER_ADDRESSES = {
     'backend': 'https://localhost:8080',
-    'master': 'https://116.56.140.108:8443'
+    'master': 'https://116.56.140.108:8443',
+    'mock' : 'http://localhost:3000'
 };
 
 export const RESULT_CODE = {
