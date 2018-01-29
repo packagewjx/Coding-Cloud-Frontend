@@ -8,7 +8,7 @@
 
 var doc = $(document);
 
-export default function() {
+export default function registerClickNotify() {
 
     var $this = $(this),
         onload = $this.data('onload');
@@ -26,6 +26,8 @@ export default function() {
 
 }
 
+
+
 function notifyNow($element) {
     var message = $element.data('message'),
         options = $element.data('options');
@@ -36,6 +38,9 @@ function notifyNow($element) {
     $.notify(message, options || {});
 }
 
+export function notify(message, options) {
+    $.notify(message, options || {});
+}
 
 
 /**
