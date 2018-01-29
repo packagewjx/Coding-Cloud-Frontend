@@ -77,7 +77,7 @@ Openshift登陆使用了Oauth2.0协议认证，分下面步骤进行：
 5. 然后就可以进入主页了。主页会自动在后台请求token。
 
 
-# Angle模板
+# Angle模板使用及项目开发方法
 
 ## 下载链接
 
@@ -103,7 +103,7 @@ Openshift登陆使用了Oauth2.0协议认证，分下面步骤进行：
 
 - [**react-bootstrap**](https://react-bootstrap.github.io/getting-started/introduction)：Bootstrap样式库，本来用官方的javascript脚本实现，这个库用react重新实现一遍。需提前了解[Bootstrap](https://getbootstrap.com/docs/3.3/getting-started/)库。这是Bootstrap V3，当前版本已经到V4了，不过react-bootstrap用的是V3
 - [**react-transition-group**](https://reactcommunity.org/react-transition-group/)：一些进入和退出的动画组件。
-- [**jQuery**](https://api.jquery.com/)：React专注于[DOM](https://en.wikipedia.org/wiki/Document_Object_Model)的操控，没有获取后台数据的相应API，因此使用jQuery的相关API来做REST客户端，获取数据。
+- [**jQuery**](https://api.jquery.com/)：React专注于[DOM](https://en.wikipedia.org/wiki/Document_Object_Model)的操控，没有获取后台数据的相应API，因此使用jQuery的相关API来做REST客户端，获取数据。另外也需要用jQuery来获取组件内部的数据等等。jQuery是一个把JavaScript的许多功能的语法简单化的库。
 - [react-router](https://reacttraining.com/react-router/core/guides/quick-start)：如果需要页面内的路由，可以学习使用这个react-router库。
 - [react-router-bootstrap](https://github.com/react-bootstrap/react-router-bootstrap)：整合react-router和react-bootstrap，让router组件有bootstrap的样式。
 
@@ -160,6 +160,16 @@ ditable组件，可以做到原地编辑，也就是看到一些东西，本来�
 同时提供了4个简写的方法，分别对应四个HTTP方法，`get`,`post`,`put`,`delete`。
 
 我这个这是简单的包装，多来[这里](http://api.jquery.com/category/ajax/)看看ajax函数的详细文档。
+
+## 如何开发一个页面
+
+React教程教过我们，开发一个页面，首先开发页面里面的组件。组件可以单独放到一个文件中，也可以放在页面的文件中，这主要看你是否需要重复利用这个组件，推荐放文件中，除了一些细小的组件以外，有利于维护。
+
+组件的编写，首先是写出一个静态的组件，也就是先有布局和显示的东西，不获取后台的数据，先自己填充一些模拟的数据进去，然后制作这个组件。
+
+静态组件做好以后，就可以根据后台返回的数据，编写将后台数据转换为你的组件展示时候使用的数据格式。直接使用Web Console来获取后台的数据，你需要什么数据，就进入你开发的页面对应的Web Console的页面，打开开发者工具的Network标签页，寻找获取你的需要的数据的那一条请求，找到返回值，根据那个返回值写你的转换函数就行。可以使用上面的筛选功能，Rest请求一般在XHR。
+
+举个例子，我现在正在开发用户的主页，能看到模板库和用户的所有项目。我开发显示模板的组件，我先写好大致的布局，有标题，有部署模板、部署镜像什么的超链接，还有代表模板的一个个图标和文字。做好静态的显示组件后，为了获取模板的实际数据，打开开发者工具，在那么多的请求里面找到一条请求，叫tempaltes的，网址是`/apis/template.openshift.io/v1/namespaces/openshift/templates`的，我就知道是我需要的数据获取API了。点进去看响应，看到Json就能写出相应的转换函数。
 
 # 编程规范
 
