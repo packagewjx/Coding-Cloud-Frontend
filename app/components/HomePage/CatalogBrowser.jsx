@@ -4,9 +4,10 @@
  Description:
  */
 import React from 'react';
-import {Button, Col, Collapse, FormControl, FormGroup, InputGroup, Row, Tab, Tabs, Thumbnail} from "react-bootstrap";
+import {Button, Col, Collapse, FormControl, FormGroup, Image, InputGroup, Row, Tab, Tabs} from "react-bootstrap";
 import {RestClient, SERVER} from "../Util/RestClient";
 import {Category, convertToItems, doFilter} from "./CatalogBrowser.run";
+import {getAbsoluteOffsetTop} from "../Util/StylingUtils";
 
 class CatalogBrowser extends React.Component {
     constructor() {
@@ -14,6 +15,7 @@ class CatalogBrowser extends React.Component {
         this.handleSearchCatalog = this.handleSearchCatalog.bind(this);
         this.onTemplateSelected = this.onTemplateSelected.bind(this);
         this.onTabSelect = this.onTabSelect.bind(this);
+        this.onThumbnailClick = this.onThumbnailClick.bind(this);
         this.changeFilter = this.changeFilter.bind(this);
         this.togglePanelOpen = this.togglePanelOpen.bind(this);
 
@@ -38,15 +40,29 @@ class CatalogBrowser extends React.Component {
     changeFilter(filter) {
         let oldFilter = this.state.filter;
         Object.assign(oldFilter, filter);
-        this.setState({filter: oldFilter, open: false});
+        this.setState({filter: oldFilter});
     }
 
     onTabSelect(eventKey) {
         if (eventKey === 'all') {
             this.changeFilter({primaryType: undefined, secondaryType: undefined});
             this.setState({open: true});
-        } else {
+        } else if (eventKey === 'other') {
             this.changeFilter({primaryType: eventKey});
+            this.setState({open: true});
+        }
+        else {
+            this.changeFilter({primaryType: eventKey});
+            this.setState({open: false});
+        }
+    }
+
+    onThumbnailClick(secondaryType) {
+        if (this.state.filter.secondaryType === secondaryType || this.state.filter.secondaryType === undefined && secondaryType === 'all') {
+            this.setState({open: !this.state.open});
+        } else {
+            this.changeFilter({secondaryType: secondaryType === 'all' ? undefined : secondaryType});
+            this.setState({open: true});
         }
     }
 
@@ -73,15 +89,19 @@ class CatalogBrowser extends React.Component {
     }
 
     render() {
+
         let tabs = [];
         for (let primaryType in Category) {
             if (Category.hasOwnProperty(primaryType)) {
                 tabs.push(
-                    <PrimaryTab togglePanelOpen={this.togglePanelOpen} changeFilter={this.changeFilter} key={primaryType} eventKey={primaryType} primaryType={primaryType} title={primaryType}/>
+                    <PrimaryTab onThumbnailClick={this.onThumbnailClick} key={primaryType} eventKey={primaryType}
+                                primaryType={primaryType} title={primaryType}/>
                 )
             }
         }
 
+        //calculate the max height for browser panel
+        let browserPanelHeight = document.body.clientHeight - getAbsoluteOffsetTop($("#browserPanel")[0]) - 45;
 
         return (
             <div className="content-wrapper">
@@ -89,14 +109,15 @@ class CatalogBrowser extends React.Component {
                     <InputGroup>
                         <FormControl id="isunputSearchCatalog" type="text" placeholder={"搜索模板库..."}/>
                         <InputGroup.Button>
-                            <Button title="搜索" onClick={this.handleSearchCatalog}><em
-                                className="fa fa-search"/></Button>
+                            <Button title="搜索" onClick={this.handleSearchCatalog}>
+                                <em className="fa fa-search"/>
+                            </Button>
                         </InputGroup.Button>
                     </InputGroup>
                 </FormGroup>
 
                 {/*Start Browser Panel*/}
-                <div className="panel panel-default">
+                <div id="browserPanel" className="panel" style={{maxHeight: browserPanelHeight, overflowY: "auto"}}>
                     <div className="panel-heading">
                         <h4>浏览模板库
                             <small className="pull-right">
@@ -105,14 +126,17 @@ class CatalogBrowser extends React.Component {
                                 <a>导入YAML/JSON</a>
                                 &nbsp;
                                 <a>从项目中选择</a>
-                            </small></h4>
+                            </small>
+                        </h4>
                     </div>
-                    <div className="panel-body">
+                    <div className="panel-body" >
                         <Tabs id="primaryTabs" onSelect={this.onTabSelect}>
                             <Tab eventKey={"all"} title={"all"}/>
                             {tabs}
+                            <Tab eventKey={"other"} title={"other"}/>
                         </Tabs>
-                        <TemplateFilterPanel open={this.state.open} items={this.items} filter={this.state.filter}/>
+                        <TemplateFilterPanel open={this.state.open}
+                                             items={this.items} filter={this.state.filter}/>
                     </div>
                 </div>
             </div>
@@ -123,21 +147,10 @@ class CatalogBrowser extends React.Component {
 class PrimaryTab extends React.Component {
     /**
      *
-     * @param {{changeFilter: Function, primaryType: string, eventKey: any, title: string}} props
+     * @param {{onThumbnailClick: function, primaryType: string, eventKey: any, title: string}} props
      */
     constructor(props) {
         super(props);
-
-        this.onThumbnailClick = this.onThumbnailClick.bind(this);
-    }
-
-    /**
-     *
-     * @param {string} secondaryType
-     */
-    onThumbnailClick(secondaryType) {
-        this.props.changeFilter({secondaryType});
-        this.props.togglePanelOpen();
     }
 
     render() {
@@ -146,11 +159,11 @@ class PrimaryTab extends React.Component {
         for (let secondaryType in primaryTypeObj) {
             if (primaryTypeObj.hasOwnProperty(secondaryType)) {
                 thumbnails.push(
-                    <Col key={secondaryType} md={3}>
+                    <Col key={secondaryType} md={2}>
                         <SecondaryThumbnail iconUrl={primaryTypeObj[secondaryType].iconUrl}
                                             title={secondaryType}
                                             secondaryType={secondaryType}
-                                            onClick={this.onThumbnailClick}/>
+                                            onClick={this.props.onThumbnailClick}/>
                     </Col>
                 )
             }
@@ -159,6 +172,12 @@ class PrimaryTab extends React.Component {
         return (
             <Tab eventKey={this.props.eventKey} title={this.props.title}>
                 <Row>
+                    <Col md={2}>
+                        <SecondaryThumbnail
+                            title={"all"}
+                            secondaryType={"all"}
+                            onClick={this.props.onThumbnailClick}/>
+                    </Col>
                     {thumbnails}
                 </Row>
             </Tab>
@@ -168,12 +187,27 @@ class PrimaryTab extends React.Component {
 
 class SecondaryThumbnail extends React.Component {
     render() {
+        {/*<a onClick={() => {*/
+        }
+        {/*this.props.onClick(this.props.secondaryType)*/
+        }
+        {/*}}><Image height={20}*/
+        }
+        {/*src={this.props.iconUrl ? "img/" + this.props.iconUrl : "/img/logo/faclone.svg"}/>*/
+        }
+        {/*{this.props.title}*/
+        }
+        {/*</a>*/
+        }
         return (
-            <Thumbnail href="#" alt="100x100"
+            <a style={{cursor: "pointer"}} className="text-center" onClick={() => {
+                this.props.onClick(this.props.secondaryType)
+            }}>
+                <Image className="center-block"
                        src={this.props.iconUrl ? "img/" + this.props.iconUrl : "/img/logo/faclone.svg"}
-                       onClick={() => {this.props.onClick(this.props.secondaryType)}}>
+                       height={60} width={60}/>
                 <h4>{this.props.title}</h4>
-            </Thumbnail>
+            </a>
         );
     }
 }

@@ -42,7 +42,7 @@ const appHistory = useRouterHistory(createHistory)({
 });
 
 ReactDOM.render(
-    <Router history={appHistory}>
+    <Router history={appHistory} style={{height: "100%"}}>
         {/*<Route path="/" component={Base}>*/}
 
         {/*</Route>*/}
@@ -76,7 +76,7 @@ ReactDOM.render(
         </Route>
 
         {/*Pages*/}
-        <Route path="/" component={BasePage}>
+        <Route path="/" component={BasePage} style={{height: "100%"}}>
             <IndexRoute component={Login}/>
             <Route path="home" component={HomePage}/>
         </Route>

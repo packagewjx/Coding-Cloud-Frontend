@@ -130,17 +130,23 @@ function convertImageStreamToItem(imageStream) {
  * @return {Item[]} after applying the filter, the items left.
  */
 function doFilter(items, filter) {
+    console.log("here");
     //define filter function, each filter one property
     let filters = [];
     if (typeof filter.keyword !== 'undefined')
         filters.push((item) =>
             item.displayName.includes(filter.keyword));
-    if (typeof filter.primaryType !== 'undefined')
+    if (filter.primaryType === 'other') {
         filters.push((item) =>
-            item.primaryType === filter.primaryType);
-    if (typeof filter.secondaryType !== 'undefined')
-        filters.push((item) =>
-            item.secondaryType === filter.secondaryType);
+            !(item.hasOwnProperty("primaryType") && item.hasOwnProperty("secondaryType")));
+    } else {
+        if (typeof filter.primaryType !== 'undefined')
+            filters.push((item) =>
+                item.primaryType === filter.primaryType);
+        if (typeof filter.secondaryType !== 'undefined')
+            filters.push((item) =>
+                item.secondaryType === filter.secondaryType);
+    }
 
     if (filters.length === 0)
         return items;
