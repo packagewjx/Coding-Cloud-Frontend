@@ -4,17 +4,22 @@
  Description:
  */
 import React from 'react';
-import {Button, FormControl, FormGroup, InputGroup} from "react-bootstrap";
+import {Button, Col, Collapse, FormControl, FormGroup, InputGroup, Row, Tab, Tabs, Thumbnail} from "react-bootstrap";
 import {RestClient, SERVER} from "../Util/RestClient";
-import {convertToItems, doFilter} from "./CatalogBrowser.run";
+import {Category, convertToItems, doFilter} from "./CatalogBrowser.run";
 
 class CatalogBrowser extends React.Component {
     constructor() {
         super();
         this.handleSearchCatalog = this.handleSearchCatalog.bind(this);
         this.onTemplateSelected = this.onTemplateSelected.bind(this);
+        this.onTabSelect = this.onTabSelect.bind(this);
+        this.changeFilter = this.changeFilter.bind(this);
+        this.togglePanelOpen = this.togglePanelOpen.bind(this);
 
-        this.state = {templates: [], imageStreams: []};
+        this.state = {templates: [], imageStreams: [], filter: new Filter(), open: true};
+
+        this.items = [];
     }
 
     onTemplateSelected(template) {
@@ -24,18 +29,43 @@ class CatalogBrowser extends React.Component {
 
     handleSearchCatalog() {
         let keyword = $('#inputSearchCatalog').val();
-        console.log(keyword);
+        this.changeFilter({keyword});
+    }
+
+    /**
+     * @param {Filter} filter partial filter object, to change this filter.
+     **/
+    changeFilter(filter) {
+        let oldFilter = this.state.filter;
+        Object.assign(oldFilter, filter);
+        this.setState({filter: oldFilter, open: false});
+    }
+
+    onTabSelect(eventKey) {
+        if (eventKey === 'all') {
+            this.changeFilter({primaryType: undefined, secondaryType: undefined});
+            this.setState({open: true});
+        } else {
+            this.changeFilter({primaryType: eventKey});
+        }
+    }
+
+    togglePanelOpen() {
+        this.setState({open: !this.state.open});
     }
 
     componentDidMount() {
         let templateSuccess = function (data) {
-            this.setState({templates: data.items});
+            this.setState({templates: data.items}, changeItem);
         };
         let imageStreamSuccess = function (data) {
-            this.setState({imageStreams: data.items});
+            this.setState({imageStreams: data.items}, changeItem);
         };
-
         let error = function (data, status) {
+        };
+        //change the item after getting templates and imageStream
+        let changeItem = () => {
+            this.items = convertToItems(this.state.templates, this.state.imageStreams);
         };
 
         RestClient.get(SERVER.MOCK, "/server/templates.json", undefined, templateSuccess, error, undefined, this);
@@ -43,6 +73,16 @@ class CatalogBrowser extends React.Component {
     }
 
     render() {
+        let tabs = [];
+        for (let primaryType in Category) {
+            if (Category.hasOwnProperty(primaryType)) {
+                tabs.push(
+                    <PrimaryTab togglePanelOpen={this.togglePanelOpen} changeFilter={this.changeFilter} key={primaryType} eventKey={primaryType} primaryType={primaryType} title={primaryType}/>
+                )
+            }
+        }
+
+
         return (
             <div className="content-wrapper">
                 <FormGroup>
@@ -68,8 +108,11 @@ class CatalogBrowser extends React.Component {
                             </small></h4>
                     </div>
                     <div className="panel-body">
-                        <TemplateDisplay templates={this.state.templates} imageStreams={this.state.imageStreams}
-                                         onTemplateSelected={this.onTemplateSelected}/>
+                        <Tabs id="primaryTabs" onSelect={this.onTabSelect}>
+                            <Tab eventKey={"all"} title={"all"}/>
+                            {tabs}
+                        </Tabs>
+                        <TemplateFilterPanel open={this.state.open} items={this.items} filter={this.state.filter}/>
                     </div>
                 </div>
             </div>
@@ -77,46 +120,101 @@ class CatalogBrowser extends React.Component {
     }
 }
 
-class TemplateDisplay extends React.Component {
+class PrimaryTab extends React.Component {
+    /**
+     *
+     * @param {{changeFilter: Function, primaryType: string, eventKey: any, title: string}} props
+     */
     constructor(props) {
         super(props);
-        this.onTemplateSelected = props.onTemplateSelected;
+
+        this.onThumbnailClick = this.onThumbnailClick.bind(this);
     }
 
-    handleTemplateClick() {
-
+    /**
+     *
+     * @param {string} secondaryType
+     */
+    onThumbnailClick(secondaryType) {
+        this.props.changeFilter({secondaryType});
+        this.props.togglePanelOpen();
     }
 
     render() {
-        let result = convertToItems(this.props.templates, this.props.imageStreams);
-        console.log(result);
+        let thumbnails = [];
+        let primaryTypeObj = Category[this.props.primaryType];
+        for (let secondaryType in primaryTypeObj) {
+            if (primaryTypeObj.hasOwnProperty(secondaryType)) {
+                thumbnails.push(
+                    <Col key={secondaryType} md={3}>
+                        <SecondaryThumbnail iconUrl={primaryTypeObj[secondaryType].iconUrl}
+                                            title={secondaryType}
+                                            secondaryType={secondaryType}
+                                            onClick={this.onThumbnailClick}/>
+                    </Col>
+                )
+            }
+        }
 
         return (
-            <div>{JSON.stringify(result)}</div>
+            <Tab eventKey={this.props.eventKey} title={this.props.title}>
+                <Row>
+                    {thumbnails}
+                </Row>
+            </Tab>
+        )
+    }
+}
+
+class SecondaryThumbnail extends React.Component {
+    render() {
+        return (
+            <Thumbnail href="#" alt="100x100"
+                       src={this.props.iconUrl ? "img/" + this.props.iconUrl : "/img/logo/faclone.svg"}
+                       onClick={() => {this.props.onClick(this.props.secondaryType)}}>
+                <h4>{this.props.title}</h4>
+            </Thumbnail>
         );
     }
 }
 
 class TemplateFilterPanel extends React.Component {
+    /**
+     *
+     * @param {{open: Boolean, items: Item[], filter: Filter}} props
+     */
     constructor(props) {
         super(props);
-
-        let filter = {
-            keyword: props.keyword, primaryType: props.primaryType,
-            secondaryType: props.secondaryType
-        };
-
-        this.state.collapse = true;
-        this.props.filteredItems = doFilter(this.props.items, filter);
     }
 
     render() {
+        let items = [];
+        let filter = this.props.filter || {
+            keyword: this.props.keyword, primaryType: this.props.primaryType,
+            secondaryType: this.props.secondaryType
+        };
+        this.filteredItems = doFilter(this.props.items, filter);
+
+        for (let i = 0; i < this.filteredItems.length; i++) {
+            items.push(
+                <div key={this.filteredItems[i].data.metadata.name}>
+                    <h4>{this.filteredItems[i].displayName}</h4>
+                    <p>{this.filteredItems[i].primaryType}</p>
+                </div>
+            )
+        }
+
         return (
-            <div></div>
+            <Collapse in={this.props.open}>
+                <div>
+                    {items}
+                </div>
+            </Collapse>
         )
 
     }
 }
+
 
 export class Item {
     iconClass;
