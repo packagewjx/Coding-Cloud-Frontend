@@ -6,6 +6,10 @@ import '../bower_components/jquery/dist/jquery.js';
 import '../bower_components/jQuery-Storage-API/jquery.storageapi.js';
 // jquery.easing
 import '../bower_components/jquery.easing/js/jquery.easing.js';
+// jquery.steps
+import '../bower_components/jquery.steps/build/jquery.steps.js';
+// jquery-validation
+import '../bower_components/jquery-validation/dist/jquery.validate';
 // Whirl
 import '../bower_components/whirl/dist/whirl.css';
 // Animo

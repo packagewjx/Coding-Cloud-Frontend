@@ -44,6 +44,8 @@ function convertTemplateToItem(template) {
     if (annotations) {
         result.iconClass = annotations.iconClass;
         result.displayName = annotations['openshift.io/display-name'] || template.metadata.name;
+        result.description = annotations.description;
+        result.tags = annotations.tags;
         if (annotations.tags) {
             result = findTag(annotations, result);
         }
@@ -82,10 +84,12 @@ function convertImageStreamToItem(imageStream) {
     }
 
     let tag = imageStream.spec.tags[0];
-    annotations = tag.annotations;
     if (tag) {
+        annotations = tag.annotations;
         if (annotations) {
             result.iconClass = annotations.iconClass;
+            result.description = annotations.description;
+            result.tags = annotations.tags;
             if (annotations.tags) {
                 result = findTag(annotations, result);
             }

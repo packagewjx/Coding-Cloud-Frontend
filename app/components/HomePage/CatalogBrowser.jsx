@@ -10,26 +10,23 @@ import {RestClient, SERVER} from "../Util/RestClient";
 import {convertToItems, doFilter} from "./CatalogBrowser.run";
 import {getAbsoluteOffsetTop} from "../Util/StylingUtils";
 import {Category, findIconClass} from "./constants";
+import CatalogItemBuildDialog from "./CatalogItemBuildDialog";
 
 class CatalogBrowser extends React.Component {
     constructor() {
         super();
         this.handleSearchCatalog = this.handleSearchCatalog.bind(this);
-        this.onTemplateSelected = this.onTemplateSelected.bind(this);
         this.onTabSelect = this.onTabSelect.bind(this);
         this.onThumbnailClick = this.onThumbnailClick.bind(this);
         this.changeFilter = this.changeFilter.bind(this);
         this.togglePanelOpen = this.togglePanelOpen.bind(this);
         this.onItemClick = this.onItemClick.bind(this);
 
-        this.state = {templates: [], imageStreams: [], filter: new Filter(), open: true};
+        this.state = {
+            templates: [], imageStreams: [], filter: new Filter(), open: true, buildItemModal: null
+        };
 
         this.items = [];
-    }
-
-    onTemplateSelected(template) {
-        console.log("template selected");
-        console.log(template);
     }
 
     handleSearchCatalog() {
@@ -74,7 +71,20 @@ class CatalogBrowser extends React.Component {
      * @param {Item} item
      **/
     onItemClick(item) {
+        let modal = (
+            <CatalogItemBuildDialog
+                show={true}
+                item={item}
+                onModalClosed={() => {
+                    //to make the close animation work, delay the set null operation
+                    setTimeout(() => {
+                        this.setState({buildItemModal: null});
+                    }, 400);
+                }}
+            />
+        );
 
+        this.setState({buildItemModal: modal});
     }
 
     togglePanelOpen() {
@@ -101,7 +111,7 @@ class CatalogBrowser extends React.Component {
 
     render() {
 
-         let tabs = [];
+        let tabs = [];
         for (let primaryType in Category) {
             if (Category.hasOwnProperty(primaryType)) {
                 tabs.push(
@@ -150,6 +160,9 @@ class CatalogBrowser extends React.Component {
                                              items={this.items} filter={this.state.filter}/>
                     </div>
                 </div>
+
+                {/*Build Item Modal Start*/}
+                {this.state.buildItemModal}
             </div>
         );
     }
@@ -270,7 +283,8 @@ class ItemView extends React.Component {
                     borderBottomRightRadius: "50%",
                     borderBottomLeftRadius: "50%"
                 }}>
-                    <img className="center-block" style={{position: "relative", top: "50%", transform: "translateY(-50%)"}} src={item.iconClass ?
+                    <img className="center-block"
+                         style={{position: "relative", top: "50%", transform: "translateY(-50%)"}} src={item.iconClass ?
                         "img/" + findIconClass(item.iconClass) : "img/logo/faclone.svg"}
                          width={50}/>
                 </div>
@@ -283,10 +297,33 @@ class ItemView extends React.Component {
 
 
 export class Item {
+    /**
+     * @type {string}
+     */
     iconClass;
+    /**
+     * @type {string}
+     */
     displayName;
+    /**
+     * @type {string}
+     */
+    description;
+    /**
+     * @type {string[]}
+     */
+    tags;
+    /**
+     * @type {string}
+     */
     primaryType;
+    /**
+     * @type {string}
+     */
     secondaryType;
+    /**
+     * @type {object}
+     */
     data;
 }
 
