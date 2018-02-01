@@ -11,7 +11,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {IndexRedirect, Route, Router,Link, useRouterHistory} from 'react-router';
+import {IndexRedirect, Route, Router, Link, useRouterHistory, IndexRoute} from 'react-router';
 import {createHistory} from 'history';
 
 import initTranslation from './components/Common/localize';
@@ -22,6 +22,8 @@ import Login from "./components/Login";
 import './styles/bootstrap.scss';
 import './styles/app.scss'
 import HomePage from "./components/HomePage/HomePage";
+import ProjectPage from "./components/ProjectPage/ProjectPage";
+import ProjectOverView from "./components/ProjectPage/Overview/ProjectOverView";
 
 
 // Init translation system
@@ -44,11 +46,38 @@ ReactDOM.render(
         {/*<Route path="/" component={Base}>*/}
 
         {/*</Route>*/}
+        <Route path="/project" component={ProjectPage}>
+            <IndexRedirect to="overview"/>
+            <Route path="overview" component={ProjectOverView}/>
+            <Route path="applications">
+                <IndexRedirect to="deployments"/>
+                <Route path="deployments"/>
+                <Route path="statefulSets"/>
+                <Route path="pods"/>
+                <Route path="services"/>
+                <Route path="routes"/>
+            </Route>
+            <Route path="builds">
+                <IndexRedirect to="builds"/>
+                <Route path="builds"/>
+                <Route path="pipelines"/>
+                <Route path="images"/>
+            </Route>
+            <Route path="resources">
+                <IndexRedirect to="quota"/>
+                <Route path="quota"/>
+                <Route path="membership"/>
+                <Route path="configMaps"/>
+                <Route path="secrets"/>
+                <Route path="otherResources"/>
+            </Route>
+            <Route path="storage"/>
+            <Route path="monitoring"/> 7
+        </Route>
 
         {/*Pages*/}
         <Route path="/" component={BasePage}>
-            <IndexRedirect to="login"/>
-            <Route path="login" component={Login}/>
+            <IndexRoute component={Login}/>
             <Route path="home" component={HomePage}/>
         </Route>
 
