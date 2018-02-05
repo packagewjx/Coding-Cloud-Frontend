@@ -13,7 +13,8 @@ class Sidebar extends React.Component {
             userBlockCollapse: false,
             collapse: {
                 singleview: this.routeActive(['singleview']),
-                submenu: this.routeActive(['submenu'])
+                submenu: this.routeActive(['submenu']),
+                webide: this.routeActive(['webide'])
             }
         };
         this.pubsub_token = pubsub.subscribe('toggleUserblock', () => {
@@ -113,6 +114,24 @@ class Sidebar extends React.Component {
                                         <li className={ this.routeActive('submenu') ? 'active' : '' }>
                                             <Link to="submenu" title="Submenu">
                                             <span data-localize="sidebar.nav.SUBMENU">Submenu</span>
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </Collapse>
+                            </li>
+
+                            <li className={ this.routeActive(['webide']) ? 'active' : '' }>
+                                <div className="nav-item" onClick={ this.toggleItemCollapse.bind(this, 'webide') }>
+
+                                    <em className="icon-speedometer"></em>
+                                    <span data-localize="sidebar.nav.MENU">WebIDE</span>
+                                </div>
+                                <Collapse in={ this.state.collapse.webide } timeout={ 100 }>
+                                    <ul id="webide" className="nav sidebar-subnav">
+                                        <li className="sidebar-subnav-header">WebIDE</li>
+                                        <li className={ this.routeActive('webide') ? 'active' : '' }>
+                                            <Link to="webide" title="WebIDE">
+                                                <span data-localize="sidebar.nav.webide">WebIDE</span>
                                             </Link>
                                         </li>
                                     </ul>
