@@ -43,7 +43,7 @@ export default ${NAME};
 - 其余参考这个[代码规范](http://alloyteam.github.io/CodeGuide/)
 
 
-# 后端API参考
+# 后端管理API参考（非普通用户API）
 
 查看[这个文档](./API Reference.md)查询。
 
@@ -172,6 +172,39 @@ RestClient.get(SERVER.MOCK, "/server/templates.json", undefined, success, error,
 
 
 ```
+
+## **如何调用Openshift后台API**
+
+现在使用了一个Swagger Codegen生成了调用后台API的库，把本来需要自己发送HTTP请求的REST API调用，转变成调用这个库的一个函数，简化了这个调用的步骤。
+
+现在我把这个函数再封装成了一个类，叫ApiClientBuilder，在Utils目录下。在用户登录之后，我会把用于安全认证的token设置好，然后你们需要做的，就是如下的操作。
+
+```
+let apiClient = ApiClientBuilder.apiCLient;
+let apiGroup = ApiClientBuilder.apiGroup;
+
+let api = new apiGroup.AdmissionregistrationApi()
+
+let callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.getAdmissionregistrationAPIGroup(callback);
+
+```
+
+更加详细的文档，看[这个](../node_modules/open_shift_api__with_kubernetes/README.md)。这个文档描述了这些所有接口的调用方法，还有接口一览表，你们可以在这里搜索你们要的那个接口。
+
+另外，这些所有的接口都有详细的文档说明，在[这个目录](../node_modules/open_shift_api__with_kubernetes/docs)下面，README里面的超链接貌似没有作用。
+
+## 关于如何寻找自己需要的接口
+
+**开发者工具！**
+
+打开你本来要做的那个页面对应的web console的页面，F12打开开发者工具，然后打开Network选项卡，刷新一下如果没有看到东西。一般REST API请求都在XHR筛选框中，打开就能看到那些请求。API路径的命名都是易懂的英文，这里寻找你要的那个接口的命名，然后看它怎么调用的就行了。因为现在我们用这个封装好这些HTTP调用的库，你要做的就是在上一节提到的那个文档里面找到你要的那个接口。
 
 ## 如何开发一个页面
 
