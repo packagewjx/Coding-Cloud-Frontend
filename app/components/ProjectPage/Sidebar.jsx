@@ -103,6 +103,13 @@ class Sidebar extends React.Component {
                                 </Link>
                             </li>
 
+                            <li className={ this.routeActive('project/webide') ? 'active' : '' }>
+                                <Link to="project/webide" title="WebIDE">
+                                    <em className="fa fa-terminal"/>
+                                    <span>WebIDE</span>
+                                </Link>
+                            </li>
+
                             <li className={this.routeActive(['project/applications/deployments', 'project/applications/statefulSets',
                                 'project/applications/pods', 'project/applications/services', 'project/applications/routes']) ? 'active' : ''}>
                                 <div className="nav-item" onClick={this.toggleItemCollapse.bind(this, 'applications')}>
