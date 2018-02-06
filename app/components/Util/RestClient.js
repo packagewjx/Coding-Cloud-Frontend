@@ -6,7 +6,7 @@
 
 import {SERVER_ADDRESSES} from "../Common/constants";
 
-// import {METHOD, SERVER} from "RestClient";
+// import {METHOD, SERVER} from "RestClient";d
 
 export const SERVER = {
     MASTER: 'master',
@@ -121,7 +121,7 @@ class RestClient {
                     //else use token header
                     : {Token: RestClient.token});
         }
-        $.ajax(request);
+        return $.ajax(request);
     }
 
     /**
@@ -138,7 +138,7 @@ class RestClient {
         let request = new Request();
         Object.assign(request, {server, path, data: param, success, error, complete, thisArg});
         request.method = METHOD.GET;
-        RestClient.http(request);
+        return RestClient.http(request);
     }
 
     static post(server, path, data, success, error, complete, thisArg) {
@@ -146,7 +146,7 @@ class RestClient {
         Object.assign(request, {server, path, data, success, error, complete, thisArg});
         request.contentType = 'application/json';
         request.method = METHOD.POST;
-        RestClient.http(request);
+        return RestClient.http(request);
     }
 
     static put(server, path, data, success, error, complete, thisArg) {
@@ -154,7 +154,7 @@ class RestClient {
         Object.assign(request, {server, path, data, success, error, complete, thisArg});
         request.contentType = 'application.json';
         request.method = METHOD.PUT;
-        RestClient.http(request);
+        return RestClient.http(request);
     }
 
     static delete(server, path, data, success, error, complete, thisArg) {
@@ -162,8 +162,9 @@ class RestClient {
         Object.assign(request, {server, path, data, success, error, complete, thisArg});
         request.contentType = "application/json";
         request.method = METHOD.DELETE;
-        RestClient.http(request);
+        return RestClient.http(request);
     }
+
 
 
 }

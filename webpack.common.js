@@ -25,65 +25,69 @@ module.exports = {
 
     module: {
         rules: [{
-                test: /jquery\.flot\.resize\.js$/,
-                use: 'imports-loader?this=>window'
-            }, {
-                test: /\.js/,
-                use: 'imports-loader?define=>false'
-            }, {
-                test: /\.jsx?$/,
-                exclude: /(node_modules|bower_components)/,
-                use: 'react-hot-loader'
-            }, {
-                test: /\.jsx?$/,
-                exclude: /(node_modules|bower_components)/,
+            test: /jquery\.flot\.resize\.js$/,
+            use: 'imports-loader?this=>window'
+        }, {
+            test: /\.js/,
+            use: 'imports-loader?define=>false'
+        }, {
+            test: /\.jsx?$/,
+            exclude: /(node_modules|bower_components)/,
+            use: 'react-hot-loader'
+        }, {
+            test: /\.jsx?$/,
+            exclude: /(node_modules|bower_components)/,
+            use: {
+                loader: 'babel-loader',
+                query: {
+                    presets: ['es2015', 'react'],
+                    compact: false
+                }
+            }
+        }, {
+            test: /\.css$/,
+            exclude: path.join(process.cwd(), '/app'),
+            use: ExtractTextPlugin.extract({
+                fallback: 'style-loader',
                 use: {
-                    loader: 'babel-loader',
-                    query: {
-                        presets: ['es2015', 'react'],
-                        compact: false
+                    loader: 'css-loader',
+                    options: {
+                        sourceMap: true
                     }
                 }
+            })
+        }, {
+            test: /\.css$/,
+            include: path.join(process.cwd(), '/app'),
+            use: 'raw-loader'
+        }, {
+            test: /\.woff|\.woff2|\.svg|.eot|\.ttf/,
+            use: 'url-loader?prefix=font/&limit=10000'
+        }, {
+            test: /\.(png|jpg|gif)$/,
+            use: 'url-loader?limit=10000'
+        }, {
+            test: /\.scss$/,
+            use: [{
+                loader: 'style-loader'
             }, {
-                test: /\.css$/,
-                exclude: path.join(process.cwd(), '/app'),
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: {
-                        loader: 'css-loader',
-                        options: {
-                            sourceMap: true
-                        }
-                    }
-                })
-            }, {
-                test: /\.css$/,
-                include: path.join(process.cwd(), '/app'),
-                use: 'raw-loader'
-            }, {
-                test: /\.woff|\.woff2|\.svg|.eot|\.ttf/,
-                use: 'url-loader?prefix=font/&limit=10000'
-            }, {
-                test: /\.(png|jpg|gif)$/,
-                use: 'url-loader?limit=10000'
-            }, {
-                test: /\.scss$/,
-                use: [{
-                        loader: 'style-loader'
-                    }, {
-                        loader: 'css-loader'
-                    },/*{
+                loader: 'css-loader'
+            }, /*{
                         loader: 'rtlcss-loader' // uncomment for RTL
                     },*/
-                    {
-                        loader: 'sass-loader',
-                        options: {
-                            outputStyle: 'expanded'
-                        }
+                {
+                    loader: 'sass-loader',
+                    options: {
+                        outputStyle: 'expanded'
                     }
-                ]
-            }]
-            // , noParse: [/\.min\.js/]
+                }
+            ]
+        }, {
+            parser: {
+                amd: false
+            }
+        }]
+        // , noParse: [/\.min\.js/]
     },
 
     resolveLoader: {
@@ -93,7 +97,7 @@ module.exports = {
     },
 
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor[hash:6].js' }),
+        new webpack.optimize.CommonsChunkPlugin({name: 'vendor', filename: 'vendor[hash:6].js'}),
         new HtmlWebpackPlugin({
             template: 'app/index.html',
             baseUrl: baseHref
