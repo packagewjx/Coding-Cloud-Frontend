@@ -24,6 +24,8 @@ import './styles/app.scss'
 import HomePage from "./components/HomePage/HomePage";
 import ProjectPage from "./components/ProjectPage/ProjectPage";
 import ProjectOverView from "./components/ProjectPage/Overview/ProjectOverView";
+import WebIDE from "./components/WebIDE/WebIDE";
+
 
 
 // Init translation system
@@ -49,6 +51,7 @@ ReactDOM.render(
         <Route path="/project" component={ProjectPage}>
             <IndexRedirect to="overview"/>
             <Route path="overview" component={ProjectOverView}/>
+            <Route path="webide" component={WebIDE}/>
             <Route path="applications">
                 <IndexRedirect to="deployments"/>
                 <Route path="deployments"/>
