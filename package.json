@@ -13,6 +13,7 @@
     "postinstall-heroku": "bower install && npm run build"
   },
   "dependencies": {
+ 
     "babel-polyfill": "6.23.0",
     "babel-runtime": "6.23.0",
     "codemirror": "5.25.2",

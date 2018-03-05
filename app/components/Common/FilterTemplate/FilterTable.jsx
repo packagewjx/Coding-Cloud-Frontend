@@ -17,6 +17,10 @@ var tableData =
     [
         {key:"row1", header1:{pathname:"/filtertemplate/tablelink", text:"this is a link"}, header2:{pathname:"/filtertemplate/tablelink2", text:"this is a link2"},
             header3:"text1", header4:"text2", header5:"text3"},
+        {key:"row2", header1:{pathname:"/filtertemplate/tablelink", text:"this is a link"}, header2:{pathname:"/filtertemplate/tablelink2", text:"this is a link2"},
+            header3:"text1", header4:"text2", header5:"text3"},
+        {key:"row3", header1:{pathname:"/filtertemplate/tablelink", text:"this is a link"}, header2:{pathname:"/filtertemplate/tablelink2", text:"this is a link2"},
+            header3:"text1", header4:"text2", header5:"text3"},
     ];
 class FilterTable extends React.Component {
     constructor(props, context) {
@@ -51,8 +55,8 @@ class FilterTable extends React.Component {
 
     render(){
 
-        var table = this.state.filter.map( (item) =>
-            (  <tr>
+        var table = this.state.filter.map( (item,index) =>
+            (  <tr key={index + 1}>
                 <td>
                     <Link to={item.header1.pathname}>{item.header1.text}
                     </Link>
@@ -81,7 +85,7 @@ class FilterTable extends React.Component {
                         <Panel >
                             <Table striped>
                                 <thead>
-                                <tr>
+                                <tr key="0">
                                     <th>header1</th>
                                     <th>header2</th>
                                     <th>header3</th>

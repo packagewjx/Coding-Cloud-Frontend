@@ -111,7 +111,7 @@ class Sidebar extends React.Component {
                                     <ul id="submenu" className="nav sidebar-subnav">
                                         <li className="sidebar-subnav-header">Submenu</li>
                                         <li className={ this.routeActive('submenu') ? 'active' : '' }>
-                                            <Link to="filtertemplate" title="Submenu">
+                                            <Link to="submenu" title="Submenu">
                                             <span data-localize="sidebar.nav.SUBMENU">Submenu</span>
                                             </Link>
                                         </li>

@@ -19,10 +19,8 @@ import initLoadThemes from './components/Common/load-themes';
 import BasePage from './components/Layout/BasePage';
 import Login from "./components/Login";
 
-//two links for example in FilterTemplate
-import TableLink from './components/Common/FilterTemplate/TableLink';
-import TableLink2 from './components/Common/FilterTemplate/TableLink2';
-import FilterTemplate from  './components/Common/FilterTemplate/FilterTemplate';
+//builds
+import Builds from './components/ProjectPage/Builds/Builds';
 
 // Application Styles
 import './styles/bootstrap.scss';
@@ -68,7 +66,7 @@ ReactDOM.render(
             </Route>
             <Route path="builds">
                 <IndexRedirect to="builds"/>
-                <Route path="builds"/>
+                <Route path="builds" component={Builds}/>
                 <Route path="pipelines"/>
                 <Route path="images"/>
             </Route>
@@ -83,10 +81,6 @@ ReactDOM.render(
             <Route path="storage"/>
             <Route path="monitoring"/>
 
-            {/*these three routes are imported for filter template  by Li Yuzhen*/}
-            <Route path="filtertemplate" component={FilterTemplate}/>
-            <Route path="filtertemplate/tablelink" component={TableLink} />
-            <Route path="filtertemplate/tablelink2" component={TableLink2} />
         </Route>
 
         {/*Pages*/}
