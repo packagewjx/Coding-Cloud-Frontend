@@ -7,7 +7,10 @@ import React from 'react';
 
 class ProjectBrowser extends React.Component {
     render() {
-        return (<div/>
+        return (
+            <div>
+                <h1>This is Project Browser</h1>
+            </div>
             /* Insert your Component Here */
         );
     }
