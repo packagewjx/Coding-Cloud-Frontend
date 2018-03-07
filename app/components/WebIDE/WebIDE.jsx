@@ -25,7 +25,7 @@ class WebIDE extends React.Component {
     render() {
         console.log(this);
         return (
-            <iframe src="http://116.56.140.108:8080/" frameBorder="0" width="100%" height="1000">/*WebIDE嵌入*/
+            <iframe src="http://116.56.140.108:7012/" frameBorder="0" width="100%" height="1000">/*WebIDE嵌入*/
             </iframe>
         );
     }
