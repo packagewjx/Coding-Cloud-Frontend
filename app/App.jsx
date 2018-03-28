@@ -22,13 +22,17 @@ import Login from "./components/Login";
 //builds
 import Builds from './components/ProjectPage/Builds/Builds';
 
-// Application Styles
-import './styles/bootstrap.scss';
-import './styles/app.scss'
+//
 import HomePage from "./components/HomePage/HomePage";
 import ProjectPage from "./components/ProjectPage/ProjectPage";
 import ProjectOverView from "./components/ProjectPage/Overview/ProjectOverView";
 import WebIDE from "./components/WebIDE/WebIDE";
+import ProjectList from "./components/HomePage/ProjectList";
+
+// Application Styles
+import './styles/bootstrap.scss';
+import './styles/app.scss'
+
 
 
 
@@ -86,7 +90,8 @@ ReactDOM.render(
         {/*Pages*/}
         <Route path="/" component={BasePage} style={{height: "100%"}}>
             <IndexRoute component={Login}/>
-            <Route path="home" component={HomePage}/>
+            <Route path="home" component={HomePage} />
+            <Route path="projectList" component={ProjectList} />
         </Route>
 
         {/* Not found handler */}

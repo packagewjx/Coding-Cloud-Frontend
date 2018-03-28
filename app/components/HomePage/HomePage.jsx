@@ -9,23 +9,23 @@ import HomePageHeader from "./HomePageHeader";
 import CatalogBrowser from "./CatalogBrowser";
 import ProjectBrowser from "./ProjectBrowser";
 import Offsidebar from "../Layout/Offsidebar";
-import {Col, Grid, Row} from "react-bootstrap";
+import {Col , Row} from "react-bootstrap";
 
 class HomePage extends React.Component {
     render() {
         return (
             <div>
                 <HomePageHeader/>
-                <Grid>
+
                     <Row>
                         <Col md={8}>
                             <CatalogBrowser/>
                         </Col>
                         <Col md={4}>
-                            <ProjectBrowser/>
+                        <ProjectBrowser />
                         </Col>
                     </Row>
-                </Grid>
+
                 <Offsidebar/>
             </div>
         )

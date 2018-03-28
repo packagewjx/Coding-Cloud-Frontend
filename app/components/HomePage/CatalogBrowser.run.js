@@ -26,10 +26,11 @@ let TagMap = (function () {
  */
 function convertToItems(templates, imageStreams) {
     let result = [];
-
+ 
     for (let i = 0; i < templates.length; i++) {
         result.push(convertTemplateToItem(templates[i]));
     }
+   
 
     for (let i = 0; i < imageStreams.length; i++) {
         result.push(convertImageStreamToItem(imageStreams[i]));
@@ -46,12 +47,20 @@ function convertTemplateToItem(template) {
         result.displayName = annotations['openshift.io/display-name'] || template.metadata.name;
         result.description = annotations.description;
         result.tags = annotations.tags;
+        if (annotations['kubectl.kubernetes.io/last-applied-configuration']) {
+            result.lastAppliedConfiguration = eval( "(" + annotations['kubectl.kubernetes.io/last-applied-configuration'] + ")" )
+            
+            }
+            
+        }
+       
         if (annotations.tags) {
             result = findTag(annotations, result);
         }
-    } else {
-        result.displayName = template.metadata.name;
-    }
+        else {
+            result.displayName = template.metadata.name;
+        }
+
     result.data = template;
     return result;
 }
@@ -90,6 +99,7 @@ function convertImageStreamToItem(imageStream) {
             result.iconClass = annotations.iconClass;
             result.description = annotations.description;
             result.tags = annotations.tags;
+          
             if (annotations.tags) {
                 result = findTag(annotations, result);
             }

@@ -322,6 +322,10 @@ export class Item {
      */
     secondaryType;
     /**
+    * @type {object}
+    */
+    lastAppliedConfiguration;
+    /**
      * @type {object}
      */
     data;

@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\components",
+    "\\components\\Common",
+    "\\components\\Common\\FilterTemplate",
+    "\\components\\HomePage",
+    "\\components\\ProjectPage\\Overview",
+    "\\components\\Util"
+  ],
+  "SelectedNode": "\\components\\Util\\ApiClientBuilder.js",
+  "PreviewInSolutionExplorer": false
+}
